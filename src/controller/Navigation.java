@@ -12,6 +12,7 @@ import model.*;
 import view.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 
 public class Navigation implements ActionListener {
@@ -21,8 +22,8 @@ public class Navigation implements ActionListener {
     private PlayerList playerList;
     private Player user;
     
-    private String userName;
-    private String password; 
+    // private String userName;
+    // private String password; 
     
     public Navigation() {
         
@@ -123,14 +124,22 @@ public class Navigation implements ActionListener {
     private boolean validateAccountInfo() {
         boolean isValid = false;
         
-        userName = navigationUI.getUserNameField().getText();
-        password = navigationUI.getPasswordField().getText();
+        // Grab the data the user input ...
+        String userName = navigationUI.getUserNameField().getText();
+        String password = navigationUI.getPasswordField().getText();
         
-        if ((userName.equals("admin")) && (password.equals("password123"))) {
-            isValid = true;
+        // Grab the list of all username/password combinations ...
+        HashMap<String, String> loginInfoHash = playerList.loginInfoHash();
+        
+        // ... and compare if the entered ones match any set
+        if (loginInfoHash.containsKey(userName)) {
+            if (loginInfoHash.get(userName).equals(password)) {
+                isValid = true;
+            } 
         }
         
         return isValid;
+        
     }
     
 }

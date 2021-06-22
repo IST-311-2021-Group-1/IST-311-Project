@@ -38,7 +38,7 @@ public class PlayerList {
         playerArr.add(player);
     }
 
-    public HashMap loginInfoHash(String username, String password) {
+    public HashMap loginInfoHash() {
         HashMap<String, String> loginCredentials = new HashMap<String, String>();
 
         for (int i = 0; i < playerArr.size(); i++) {

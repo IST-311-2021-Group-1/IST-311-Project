@@ -22,8 +22,6 @@ public class Navigation implements ActionListener {
     private PlayerList playerList;
     private Player user;
     
-    // private String userName;
-    // private String password; 
     
     public Navigation() {
         
@@ -98,7 +96,12 @@ public class Navigation implements ActionListener {
         navigationUI.navButton2.setVisible(true);
         navigationUI.navButton3.setVisible(true);
         navigationUI.navButton4.setVisible(true);
-        navigationUI.getTitleLabel().setText("Welcome [User]."); // ********* UPDATE THIS ONCE THE VALIDATION METHOD IS BUILT ********
+        
+        // If the user is set, display the user name. Note the user should 
+        // always be defined here so if the follow if clause is not executed, 
+        // something went wrong. Including the check anyways just to avoid 
+        // a null pointer exception. 
+        navigationUI.getTitleLabel().setText("Welcome " + user.getDisplayName() + "."); 
     }
     
     /**
@@ -135,6 +138,18 @@ public class Navigation implements ActionListener {
         if (loginInfoHash.containsKey(userName)) {
             if (loginInfoHash.get(userName).equals(password)) {
                 isValid = true;
+                
+                // The following bit runs through the entire list of players
+                // in playerList and as soon as it find the player object whose
+                // name matches userName, it sets this object in an attribute
+                // so we can call upon it to reference or update the user
+                // from this moment forward.                 
+                for (int i = 0; i < playerList.getPlayerArr().size(); i++) {
+                    
+                    if (playerList.getPlayerArr().get(i).getUsername().equals(userName)) {
+                        user = playerList.getPlayerArr().get(i);
+                    }
+                }
             } 
         }
         

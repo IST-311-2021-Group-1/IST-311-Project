@@ -15,7 +15,7 @@ public class TournamentApp {
         System.out.println("Player List: " + playerList.getPlayerArr());
         System.out.println("StoreList: " + storeList.getStoreArr());
 		
-		// Navigation navigation = new Navigation();
+		 Navigation navigation = new Navigation();
 
     }
     

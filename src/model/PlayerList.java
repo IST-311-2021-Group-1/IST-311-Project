@@ -19,12 +19,13 @@ public class PlayerList {
     
     
     public void loadArr() {
+        StoreList storeList = new StoreList();
         Player p1 = new Player("Alexa", "password1234", "alexa_m", "67226");
         Player p2 = new Player("Tomi", "password1234", "tomi_a", "28451");
         Player p3 = new Player("Vincent", "password1234", "vincent_t", "13143");
-        Manager m1 = new Manager("Yasic", "password1234", "yasic_n", "39507", (new Store("Card Store", "900 Sandpiper Ln", "39507", 40)));
-        Manager m2 = new Manager("Will", "password1234", "will_m", "13143", (new Store("Game Store", "187 Yellow Ave", "13143", 50)));
-        Manager m3 = new Manager("Peggy", "password1234", "peggy_f", "67226", (new Store("Chess Store", "123 Bluebird St", "67226", 30)));
+        Manager m1 = new Manager("Yasic", "password1234", "yasic_n", "39507", storeList.getStoreArr().get(2));
+        Manager m2 = new Manager("Will", "password1234", "will_m", "13143", storeList.getStoreArr().get(1));
+        Manager m3 = new Manager("Peggy", "password1234", "peggy_f", "67226", storeList.getStoreArr().get(0));
         
         playerArr.add(p1);
         playerArr.add(p2);

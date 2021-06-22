@@ -17,14 +17,14 @@ public class StoreList {
     }
 
     public void loadArr() {
-//        Store ChessStore = new Store("Chess Store", "123 Bluebird St", "67226", 30);
-//        Store GameStore = new Store("Game Store", "187 Yellow Ave", "13143", 50);
-//        Store CardStore = new Store("Card Store", "900 Sandpiper Ln", "39507", 40);
-//        
-//        storeArr = new ArrayList<>();
-//        storeArr.add(ChessStore);
-//        storeArr.add(GameStore);
-//        storeArr.add(CardStore);
+        Store ChessStore = new Store("Chess Store", "123 Bluebird St", "67226", 30);
+        Store GameStore = new Store("Game Store", "187 Yellow Ave", "13143", 50);
+        Store CardStore = new Store("Card Store", "900 Sandpiper Ln", "39507", 40);
+        
+        storeArr = new ArrayList<>();
+        storeArr.add(ChessStore);
+        storeArr.add(GameStore);
+        storeArr.add(CardStore);
     }
 
     public void addStore(Store store) {

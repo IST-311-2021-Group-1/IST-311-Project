@@ -35,17 +35,15 @@ public class Registration implements ActionListener
         // Hide all the error messages
         hideErrorMessages();
         
+        // Hide the done button
+        registrationUI.doneButton.setVisible(false);
+        
         // Show the registration window
         registrationUI.setVisible(true);
         
         // Add all the action listeners to the buttons from the UI
         registrationUI.confirmationButton.addActionListener(this);
-        
-        // The followin is used for testing purposes ******************** REMOVE ***************** 
-        System.out.println("B1 The number of users is " + this.playerList.getPlayerArr().size());
-        
-        //registrationUI.getPassErrorLabel().setVisible(false);
-        
+        registrationUI.doneButton.addActionListener(this);
     }
     
     @Override
@@ -56,8 +54,20 @@ public class Registration implements ActionListener
         //need to fix register() and validate() methods
         if(action == registrationUI.confirmationButton)
         {
-            register();
+            if (validate()) {
+                register();
+                hideAllButDone();
+            }
         }
+        
+        if(action == registrationUI.doneButton)
+        {
+            // close the window
+            registrationUI.setVisible(false); 
+            registrationUI.dispose(); 
+        }
+        
+
     }
     
     //Validates if all input fields are filled or valid
@@ -66,23 +76,38 @@ public class Registration implements ActionListener
     {
         boolean isValid = true;
         
-        String password = newUser.getPassword();
-        String confirmPassword = registrationUI.getPasswordField().getText();
+        // Refresh all error messages to hidden before checking them
+        hideErrorMessages();
         
-        //checking to see if password matches
-        //implement authentication for username and display name in next sprint
+        String username = registrationUI.getUserNameField().getText();
+        String password = registrationUI.getPasswordField().getText();
+        String confirmPassword = registrationUI.getConfirmPassField().getText();
+        String displayName = registrationUI.getDisplayNameField().getText();
+        String zipCode = registrationUI.getZipCodeField().getText();
         
+        // Run a check for all errors.
+        if (! password.equals(confirmPassword)) {
+            registrationUI.getPassErrorLabel().setVisible(true);
+            isValid = false;
+        }
         
-        do{
-            if(password.equals(confirmPassword)){
-                isValid = true;
-            }
-            
-            else{
-                isValid = false;
-                registrationUI.getPassErrorLabel().setVisible(true);
-            }
-        }while(!(isValid));
+        // Run a check if the username already exists
+        if (playerList.usernamesArr().contains(username)) {
+            registrationUI.getUserErrorLabel().setVisible(true);
+            isValid = false;
+        }
+        
+        // Run a check if the display name already exists
+        if (playerList.usernamesArr().contains(displayName)) {
+            registrationUI.getDisplayErrorLabel().setVisible(true);
+            isValid = false;
+        }
+        
+        // Run a check to see if the fields are empty
+        if (username.equals("") || password.equals("") || confirmPassword.equals("") || displayName.equals("") || zipCode.equals("")) {
+            registrationUI.getEmptyErrorLabel().setVisible(true);
+            isValid = false;
+        }
         
         return isValid;
     }
@@ -101,12 +126,35 @@ public class Registration implements ActionListener
         
         // And add that object to the list of all players.
         playerList.getPlayerArr().add(newUser);
-        
-        // The followin is used for testing purposes ******************** REMOVE ***************** 
-        System.out.println("B2 The number of users is " + this.playerList.getPlayerArr().size());
     }
 
     private void hideErrorMessages() {
+        registrationUI.getPassErrorLabel().setVisible(false);
+        registrationUI.getUserErrorLabel().setVisible(false);
+        registrationUI.getDisplayErrorLabel().setVisible(false);
+        registrationUI.getEmptyErrorLabel().setVisible(false);
+    }
+    
+    private void hideAllButDone() {
+        // Hide Everything except the Done Button.
+        registrationUI.doneButton.setVisible(true);
+        registrationUI.confirmationButton.setVisible(false);
         
+        hideErrorMessages();
+        
+        // Display a confirmation message
+        registrationUI.getTitleLabel().setText("Your account has been created!");
+        
+        registrationUI.getUserNameField().setVisible(false);
+        registrationUI.getPasswordField().setVisible(false);
+        registrationUI.getConfirmPassField().setVisible(false);
+        registrationUI.getDisplayNameField().setVisible(false);
+        registrationUI.getZipCodeField().setVisible(false);
+        
+        registrationUI.getUserLabel().setVisible(false);
+        registrationUI.getPassLabel().setVisible(false);
+        registrationUI.getConfirmPassLabel().setVisible(false);
+        registrationUI.getDisplayNameLabel().setVisible(false);
+        registrationUI.getZipLabel().setVisible(false);
     }
 }

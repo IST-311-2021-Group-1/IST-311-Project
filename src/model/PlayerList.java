@@ -47,6 +47,26 @@ public class PlayerList {
 
         return loginCredentials;
     }
+    
+    public ArrayList<String> usernamesArr() {
+        ArrayList<String> allUserNames = new ArrayList<String>();
+
+        for (int i = 0; i < playerArr.size(); i++) {
+            allUserNames.add(playerArr.get(i).getUsername());
+        }
+
+        return allUserNames;
+    }
+    
+    public ArrayList<String> displayNamesArr() {
+        ArrayList<String> allDisplayNames = new ArrayList<String>();
+
+        for (int i = 0; i < playerArr.size(); i++) {
+            allDisplayNames.add(playerArr.get(i).getDisplayName());
+        }
+
+        return allDisplayNames;
+    }
 
     //Getters & Setters
     public ArrayList<Player> getPlayerArr() {

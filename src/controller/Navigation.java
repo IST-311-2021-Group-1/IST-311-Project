@@ -76,9 +76,6 @@ public class Navigation implements ActionListener {
         if(action == navigationUI.registerButton){
             // pass the list of players to the registration window
             registration = new Registration(playerList);
-            
-            // The followin is used for testing purposes ******************** REMOVE ***************** 
-            System.out.println("A1 The number of users is " + this.playerList.getPlayerArr().size());
         }
     }
     

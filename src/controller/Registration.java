@@ -8,8 +8,10 @@ package controller;
 import java.awt.event.ActionEvent;
 import model.*;
 import view.*;
+//import java.util.HashMap;
+//will implement this in next sprint
 import java.awt.event.ActionListener;
-
+import java.util.ArrayList;
 
 /**
  *
@@ -20,45 +22,83 @@ public class Registration implements ActionListener
     private Player newUser;
     private View view;
     private RegistrationUI registrationUI;
-    
+    private PlayerList playerList;
+    private NavigationUI navigationUI;
     
     public Registration()
     {
         registrationUI = new RegistrationUI();
-        newUser = new Player();
         registrationUI.confirmationButton.addActionListener(this);
-    }
-    
-    
-    public void actionPerformed(ActionEvent b)
-    {
+        playerList = new PlayerList();
         
-        //action == registrationUI.getConfirmationButton()
+        registrationUI.setVisible(true);
+        registrationUI.getPassErrorLabel().setVisible(false);
+        
     }
     
-    
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+        Object action = e.getSource();
+        
+        //need to fix register() and validate() methods
+        if(action == registrationUI.confirmationButton)
+        {
+                register();
+                navigationUI.setVisible(true);
+            //}
+            
+            //else{
+                //validate();
+                //
+            //}
+        }
+    }
     
     //Validates if all input fields are filled or valid
-    public boolean validate()
+    //Method is WIP, cannot get validation
+    private boolean validate()
     {
-        boolean isValid = false;
+        boolean isValid = true;
+        
+        String password = newUser.getPassword();
+        String confirmPassword = registrationUI.getPasswordField().getText();
+        
+        //checking to see if password matches
+        //implement authentication for username and display name in next sprint
         
         
+        do{
+            if(password.equals(confirmPassword)){
+                isValid = true;
+            }
+            
+            else{
+                isValid = false;
+                registrationUI.getPassErrorLabel().setVisible(true);
+            }
+        }while(!(isValid));
         
-        
-        
-        return true;
+        return isValid;
     }
     
-    
+    //adds a new user to the player list
     public void register()
     {
+        playerList.addPlayer(newUser); 
         
-    }
-    
-    public void updateRegistrationUI()
-    {
+        /*
+        ArrayList<String> registerInfo = new ArrayList<>();
+        String username = registrationUI.getUserNameField().getText();
+        String password = registrationUI.getPasswordField().getText();
+        String confirmPassword = registrationUI.getConfirmPassField().getText();
+        String displayName = registrationUI.getDisplayNameField().getText();
+        String zipCode = registrationUI.getZipCodeField().getText();
         
+        registerInfo.add(username);
+        registerInfo.add(password);
+        registerInfo.add(displayName);
+        registerInfo.add(zipCode); 
+        */        
     }
-    
 }

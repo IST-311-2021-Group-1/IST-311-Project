@@ -117,12 +117,10 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="errorLabel3" min="-2" max="-2" attributes="0"/>
-                      <Component id="errorLabel2" min="-2" max="-2" attributes="0"/>
-                      <Component id="errorLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="passErrorLabel" min="-2" max="-2" attributes="0"/>
                       <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="62" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -131,13 +129,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                  <Component id="errorLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                  <Component id="errorLabel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                  <Component id="errorLabel3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="passErrorLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="73" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -148,28 +142,12 @@
             <Property name="text" type="java.lang.String" value="Create an Account"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="errorLabel1">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="90" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="ERROR: Username is already taken"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="errorLabel2">
+        <Component class="javax.swing.JLabel" name="passErrorLabel">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="90" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="ERROR: Password does not match"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="errorLabel3">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="90" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="ERROR: Display Name is already taken"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -213,6 +191,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmationButtonActionPerformed"/>
       </Events>
       <AuxValues>
+        <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="RegistrationUI_confirmationButton"/>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>

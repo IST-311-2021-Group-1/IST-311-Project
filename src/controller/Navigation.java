@@ -21,6 +21,8 @@ public class Navigation implements ActionListener {
     private View view;
     private PlayerList playerList;
     private Player user;
+    private Registration registration;
+    
     
     
     public Navigation() {
@@ -71,7 +73,10 @@ public class Navigation implements ActionListener {
             }
         }
         
-        
+        if(action == navigationUI.registerButton){
+            registration = new Registration();
+            //navigationUI.setVisible(false);
+        }
     }
     
     /**

@@ -30,9 +30,7 @@ public class RegistrationUI extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
-        errorLabel1 = new javax.swing.JLabel();
-        errorLabel2 = new javax.swing.JLabel();
-        errorLabel3 = new javax.swing.JLabel();
+        passErrorLabel = new javax.swing.JLabel();
         userLabel = new javax.swing.JLabel();
         passLabel = new javax.swing.JLabel();
         displayNameLabel = new javax.swing.JLabel();
@@ -49,14 +47,8 @@ public class RegistrationUI extends javax.swing.JFrame {
 
         titleLabel.setText("Create an Account");
 
-        errorLabel1.setForeground(new java.awt.Color(144, 0, 0));
-        errorLabel1.setText("ERROR: Username is already taken");
-
-        errorLabel2.setForeground(new java.awt.Color(144, 0, 0));
-        errorLabel2.setText("ERROR: Password does not match");
-
-        errorLabel3.setForeground(new java.awt.Color(144, 0, 0));
-        errorLabel3.setText("ERROR: Display Name is already taken");
+        passErrorLabel.setForeground(new java.awt.Color(144, 0, 0));
+        passErrorLabel.setText("ERROR: Password does not match");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -65,24 +57,18 @@ public class RegistrationUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(errorLabel3)
-                    .addComponent(errorLabel2)
-                    .addComponent(errorLabel1)
+                    .addComponent(passErrorLabel)
                     .addComponent(titleLabel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(titleLabel)
-                .addGap(4, 4, 4)
-                .addComponent(errorLabel1)
-                .addGap(4, 4, 4)
-                .addComponent(errorLabel2)
-                .addGap(4, 4, 4)
-                .addComponent(errorLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(passErrorLabel)
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         userLabel.setText("Username:");
@@ -230,10 +216,8 @@ public class RegistrationUI extends javax.swing.JFrame {
     public javax.swing.JButton confirmationButton;
     private javax.swing.JTextField displayNameField;
     private javax.swing.JLabel displayNameLabel;
-    private javax.swing.JLabel errorLabel1;
-    private javax.swing.JLabel errorLabel2;
-    private javax.swing.JLabel errorLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel passErrorLabel;
     private javax.swing.JLabel passLabel;
     private javax.swing.JTextField passwordField;
     private javax.swing.JLabel titleLabel;
@@ -300,45 +284,17 @@ public class RegistrationUI extends javax.swing.JFrame {
     }
 
     /**
-     * @return the errorLabel1
-     */
-    public javax.swing.JLabel getErrorLabel1() {
-        return errorLabel1;
-    }
-
-    /**
-     * @param errorLabel1 the errorLabel1 to set
-     */
-    public void setErrorLabel1(javax.swing.JLabel errorLabel1) {
-        this.errorLabel1 = errorLabel1;
-    }
-
-    /**
      * @return the errorLabel2
      */
-    public javax.swing.JLabel getErrorLabel2() {
-        return errorLabel2;
+    public javax.swing.JLabel getPassErrorLabel() {
+        return passErrorLabel;
     }
 
     /**
-     * @param errorLabel2 the errorLabel2 to set
+     * @param passErrorLabel the passErrorLabel to set
      */
-    public void setErrorLabel2(javax.swing.JLabel errorLabel2) {
-        this.errorLabel2 = errorLabel2;
-    }
-
-    /**
-     * @return the errorLabel3
-     */
-    public javax.swing.JLabel getErrorLabel3() {
-        return errorLabel3;
-    }
-
-    /**
-     * @param errorLabel3 the errorLabel3 to set
-     */
-    public void setErrorLabel3(javax.swing.JLabel errorLabel3) {
-        this.errorLabel3 = errorLabel3;
+    public void setPassErrorLabel(javax.swing.JLabel passErrorLabel) {
+        this.passErrorLabel = passErrorLabel;
     }
 
     /**

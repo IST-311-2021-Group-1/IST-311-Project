@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import model.*;
 import view.*;
 //import java.util.HashMap;
-//will implement this in next sprint
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
@@ -23,16 +22,29 @@ public class Registration implements ActionListener
     private View view;
     private RegistrationUI registrationUI;
     private PlayerList playerList;
-    private NavigationUI navigationUI;
     
-    public Registration()
+    public Registration(PlayerList playerList)
     {
-        registrationUI = new RegistrationUI();
-        registrationUI.confirmationButton.addActionListener(this);
-        playerList = new PlayerList();
+        // get the list all all players passed to it from navigation
+        // and load it into the attribute
+        this.playerList = playerList;
         
+        // load the registration UI
+        registrationUI = new RegistrationUI();
+        
+        // Hide all the error messages
+        hideErrorMessages();
+        
+        // Show the registration window
         registrationUI.setVisible(true);
-        registrationUI.getPassErrorLabel().setVisible(false);
+        
+        // Add all the action listeners to the buttons from the UI
+        registrationUI.confirmationButton.addActionListener(this);
+        
+        // The followin is used for testing purposes ******************** REMOVE ***************** 
+        System.out.println("B1 The number of users is " + this.playerList.getPlayerArr().size());
+        
+        //registrationUI.getPassErrorLabel().setVisible(false);
         
     }
     
@@ -44,14 +56,7 @@ public class Registration implements ActionListener
         //need to fix register() and validate() methods
         if(action == registrationUI.confirmationButton)
         {
-                register();
-                navigationUI.setVisible(true);
-            //}
-            
-            //else{
-                //validate();
-                //
-            //}
+            register();
         }
     }
     
@@ -85,20 +90,23 @@ public class Registration implements ActionListener
     //adds a new user to the player list
     public void register()
     {
-        playerList.addPlayer(newUser); 
-        
-        /*
-        ArrayList<String> registerInfo = new ArrayList<>();
+        // Get the text from the entry fields
         String username = registrationUI.getUserNameField().getText();
         String password = registrationUI.getPasswordField().getText();
-        String confirmPassword = registrationUI.getConfirmPassField().getText();
         String displayName = registrationUI.getDisplayNameField().getText();
         String zipCode = registrationUI.getZipCodeField().getText();
         
-        registerInfo.add(username);
-        registerInfo.add(password);
-        registerInfo.add(displayName);
-        registerInfo.add(zipCode); 
-        */        
+        // Make the new user object with the given data
+        newUser = new Player(username, password, displayName, zipCode);
+        
+        // And add that object to the list of all players.
+        playerList.getPlayerArr().add(newUser);
+        
+        // The followin is used for testing purposes ******************** REMOVE ***************** 
+        System.out.println("B2 The number of users is " + this.playerList.getPlayerArr().size());
+    }
+
+    private void hideErrorMessages() {
+        
     }
 }

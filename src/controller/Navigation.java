@@ -1,165 +1,129 @@
-
 package controller;
 
 /**
- * This class is the main controller for the login and navigation for the 
- * Tournament App. This is the core of the app that is always loaded upon 
+ * This class is the main controller for the login and navigation for the
+ * Tournament App. This is the core of the app that is always loaded upon
  * turning it on.
- * 
+ *
  * @author Yaroslav 'Yasic' Naumenko
  */
 import model.*;
 import view.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
+import javafx.event.ActionEvent;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.Window;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import java.io.IOException;
+import javafx.scene.Node;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
+public class Navigation {
 
-public class Navigation implements ActionListener {
-    
-    private NavigationUI navigationUI;
-    private View view;
+    private String userName, passWord;
     private PlayerList playerList;
     private Player user;
     private Registration registration;
-    
-    
-    
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+    @FXML
+    private AnchorPane navigationPane;
+    @FXML
+    private AnchorPane rootPane;
+    @FXML
+    private GridPane homePane;
+    @FXML
+    private Button loginButton;
+    @FXML
+    private Button registerButton;
+    @FXML
+    Text errorLabel;
+    @FXML
+    private TextField userNameTextField;
+    @FXML
+    private TextField passwordTextField;
+    @FXML
+    private Text storeText;
+    @FXML
+    private Text inboxText;
+    @FXML
+    private Text accountText;
+    @FXML
+    private Text tournamentText;
+    @FXML
+    private GridPane loginPane;
+
     public Navigation() {
-        
         // Loads the list of all user accounts.
         playerList = new PlayerList();
-        
-        // Initiate the Navigation UI.
-        navigationUI = new NavigationUI();
-        
-        // Hide the navigation portion of the UI so only the login portion
-        // is visable.
-        hideNavPortion();
-        
-        // Show the user the navigation page.
-        navigationUI.setVisible(true);
-        
-        // Add all the action listeners to the buttons from the UI
-        navigationUI.loginButton.addActionListener(this);
-        navigationUI.registerButton.addActionListener(this);
-        navigationUI.navButton1.addActionListener(this);
-        navigationUI.navButton2.addActionListener(this);
-        navigationUI.navButton3.addActionListener(this);
-        navigationUI.navButton4.addActionListener(this);
     }
-    
-    /**
-    * This method does all the actions for the various buttons on the
-    * navigation page UI.
-    * 
-    * @param e the button action picked up by the program.
-    */
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        Object action = e.getSource();
+
+    @FXML
+    void handleLoginAction(ActionEvent event) {
+        boolean confirmLogin = validateAccountInfo();
+        if (confirmLogin) {
+            loginPane.setVisible(false);
+            homePane.setVisible(true);
         
-        if (action == navigationUI.loginButton) {
-            if (validateAccountInfo()) {
-                // Hide the login portion and show the navigation portion
-                showNavPortion();
-                hideLoginPortion(); 
-            }
-            else {
-                // Display the message letting the user know they incorrectly
-                // entered in the username and password.
-                navigationUI.getErrorLabel1().setVisible(true);
-                navigationUI.getErrorLabel2().setVisible(true);
-            }
-        }
-        
-        if(action == navigationUI.registerButton){
-            // pass the list of players to the registration window
-            registration = new Registration(playerList);
+        } else {
+            errorLabel.setText("Please try again");
         }
     }
-    
-    /**
-    * This method hides the navigation buttons from the UI. This also hides the
-    * error message in case they are visible. 
-    */
-    private void hideNavPortion() {
-        navigationUI.navButton1.setVisible(false);
-        navigationUI.navButton2.setVisible(false);
-        navigationUI.navButton3.setVisible(false);
-        navigationUI.navButton4.setVisible(false);
-        navigationUI.getErrorLabel1().setVisible(false);
-        navigationUI.getErrorLabel2().setVisible(false);
+
+    @FXML
+    void handleRegisterAction(ActionEvent event) throws IOException {
+        Parent registration = FXMLLoader.load(getClass().getResource("../view/Register.fxml"));
+        Scene registrationScene = new Scene(registration);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(registrationScene);
+        window.show();
+    }
+
+    void setPlayerList(PlayerList newPlayerList) {
+        this.playerList = newPlayerList;
     }
     
-    /**
-    * This method shows the navigation buttons from the UI and updates the 
-    * title text to reflect this.
-    */
-    private void showNavPortion() {
-        navigationUI.navButton1.setVisible(true);
-        navigationUI.navButton2.setVisible(true);
-        navigationUI.navButton3.setVisible(true);
-        navigationUI.navButton4.setVisible(true);
-        
-        // If the user is set, display the user name. Note the user should 
-        // always be defined here so if the follow if clause is not executed, 
-        // something went wrong. Including the check anyways just to avoid 
-        // a null pointer exception. 
-        navigationUI.getTitleLabel().setText("Welcome " + user.getDisplayName() + "."); 
-    }
-    
-    /**
-    * This method hides fields to enter the username and password, as well
-    * as hiding the error message in case they are visible. 
-    */
-    private void hideLoginPortion() {
-        navigationUI.loginButton.setVisible(false);
-        navigationUI.registerButton.setVisible(false);
-        navigationUI.getErrorLabel1().setVisible(false);
-        navigationUI.getErrorLabel2().setVisible(false);
-        navigationUI.getUserNameField().setVisible(false);
-        navigationUI.getUserNameLabel().setVisible(false);
-        navigationUI.getPasswordField().setVisible(false);
-        navigationUI.getPassLabel().setVisible(false);
-    }
-    
-    /**
-    * This method checks if the username and password are valid.
-    * 
-    * @return true if they match the records, false otherwise.
-    */
     private boolean validateAccountInfo() {
         boolean isValid = false;
-        
+
         // Grab the data the user input ...
-        String userName = navigationUI.getUserNameField().getText();
-        String password = navigationUI.getPasswordField().getText();
-        
+        userName = userNameTextField.getText();
+        passWord = passwordTextField.getText();
+
         // Grab the list of all username/password combinations ...
         HashMap<String, String> loginInfoHash = playerList.loginInfoHash();
-        
+
         // ... and compare if the entered ones match any set
         if (loginInfoHash.containsKey(userName)) {
-            if (loginInfoHash.get(userName).equals(password)) {
+            if (loginInfoHash.get(userName).equals(passWord)) {
                 isValid = true;
-                
+
                 // The following bit runs through the entire list of players
                 // in playerList and as soon as it find the player object whose
                 // name matches userName, it sets this object in an attribute
                 // so we can call upon it to reference or update the user
                 // from this moment forward.                 
                 for (int i = 0; i < playerList.getPlayerArr().size(); i++) {
-                    
+
                     if (playerList.getPlayerArr().get(i).getUsername().equals(userName)) {
                         user = playerList.getPlayerArr().get(i);
                     }
                 }
-            } 
+            }
         }
-        
+
         return isValid;
-        
+
     }
-    
 }

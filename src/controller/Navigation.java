@@ -75,7 +75,6 @@ public class Navigation {
         if (confirmLogin) {
             loginPane.setVisible(false);
             homePane.setVisible(true);
-        
         } else {
             errorLabel.setText("Please try again");
         }
@@ -83,11 +82,19 @@ public class Navigation {
 
     @FXML
     void handleRegisterAction(ActionEvent event) throws IOException {
-        Parent registration = FXMLLoader.load(getClass().getResource("../view/Register.fxml"));
-        Scene registrationScene = new Scene(registration);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(registrationScene);
-        window.show();
+            //Load Navigation.FXML 
+            FXMLLoader login = new FXMLLoader(getClass().getResource("../view/Register.FXML"));
+            Parent root = login.load();
+           
+            //Load Navigation.java to set current (registration) playerList into its (navigation) playerList 
+            Registration navController = login.getController();
+            navController.setPlayerList(playerList);
+            
+            //Load new scene into window
+            Scene registrationScene = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(registrationScene);
+            window.show();
     }
 
     void setPlayerList(PlayerList newPlayerList) {

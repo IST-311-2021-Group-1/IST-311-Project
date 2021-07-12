@@ -22,19 +22,19 @@ public class Registration {
     private Button confirmButton;
 
     @FXML
-    private TextField userNameInput;
+    private TextField userNameField;
 
     @FXML
-    private TextField passwordInput;
+    private TextField passwordField;
 
     @FXML
-    private TextField verifyPasswordInput;
+    private TextField verifyPasswordField;
 
     @FXML
-    private TextField displayNameInput;
+    private TextField displayNameField;
 
     @FXML
-    private TextField zipcodeInput;
+    private TextField zipCodeField;
 
     @FXML
     private Button cancelButton;
@@ -49,7 +49,7 @@ public class Registration {
     private Text displayNameError;
 
     @FXML
-    private Text zipcodeError;
+    private Text zipCodeError;
 
     @FXML
     private Text fieldError;
@@ -57,23 +57,26 @@ public class Registration {
  
     public Registration () {
         playerList = new PlayerList();
-        userNameInput = new TextField("");
-        passwordInput = new TextField("");
-        verifyPasswordInput = new TextField("");
-        displayNameInput = new TextField("");
-        zipcodeInput = new TextField("");
     }
     @FXML
-    void handleCancelAction(ActionEvent event) throws IOException {
-        Parent login = FXMLLoader.load(getClass().getResource("../view/Navigation.fxml"));
-        Scene loginScene = new Scene(login);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(loginScene);
-        window.show();
+    private void handleCancelAction(ActionEvent event) throws IOException {
+            //Load Navigation.FXML
+            FXMLLoader login = new FXMLLoader(getClass().getResource("../view/Navigation.FXML"));
+            Parent root = login.load();
+           
+            //Load Navigation.java to set current (registration) playerList into its (navigation) playerList 
+            Navigation navController = login.getController();
+            navController.setPlayerList(playerList);
+            
+            //Load new scene into window
+            Scene registrationScene = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(registrationScene);
+            window.show();
     }
 
     @FXML
-    void handleConfirmAction(ActionEvent event) throws IOException {
+    private void handleRegisterAction(ActionEvent event) throws IOException {
         boolean validateAccount = validate();
         
         if (validateAccount) {
@@ -97,12 +100,16 @@ public class Registration {
         }
     }
 
-    public void register() {
+    void setPlayerList(PlayerList newPlayerList) {
+        this.playerList = newPlayerList;
+    }
+    
+    private void register() {
         // Get the text from the entry fields
-        String username = userNameInput.getText();
-        String password = passwordInput.getText();
-        String displayName = displayNameInput.getText();
-        String zipCode = zipcodeInput.getText();
+        String username = userNameField.getText();
+        String password = passwordField.getText();
+        String displayName = displayNameField.getText();
+        String zipCode = zipCodeField.getText();
 
         // Make the new user object with the given data
         newUser = new Player(username, password, displayName, zipCode);
@@ -116,11 +123,11 @@ public class Registration {
     private boolean validate() {
         boolean isValid = true;
 
-        String username = userNameInput.getText();
-        String password = passwordInput.getText();
-        String confirmPassword = verifyPasswordInput.getText();
-        String displayName = displayNameInput.getText();
-        String zipCode = zipcodeInput.getText();
+        String username = userNameField.getText();
+        String password = passwordField.getText();
+        String confirmPassword = verifyPasswordField.getText();
+        String displayName = displayNameField.getText();
+        String zipCode = zipCodeField.getText();
 
         // Run a check for all errors.
         if (!password.equals(confirmPassword)) {
@@ -137,6 +144,12 @@ public class Registration {
         // Run a check if the display name already exists
         if (playerList.usernamesArr().contains(displayName)) {
             displayNameError.setVisible(true);
+            isValid = false;
+        }
+        
+        // Run a check to see if the zipcode is 5 digits
+        if (zipCode.length() != 5) {
+            zipCodeError.setVisible(true);
             isValid = false;
         }
 

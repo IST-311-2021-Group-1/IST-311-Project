@@ -22,11 +22,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import java.io.IOException;
 import javafx.scene.Node;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 
 public class Navigation {
 
@@ -42,7 +44,7 @@ public class Navigation {
     @FXML
     private AnchorPane rootPane;
     @FXML
-    private GridPane homePane;
+    private BorderPane homePane;
     @FXML
     private Button loginButton;
     @FXML
@@ -63,6 +65,16 @@ public class Navigation {
     private Text tournamentText;
     @FXML
     private GridPane loginPane;
+    @FXML
+    private Button tournamentButton;
+    @FXML
+    private Button accountButton;
+    @FXML
+    private Button storeAccountButton;
+    @FXML
+    private Button inboxButton;
+    @FXML
+    private Pane newPaneCenter;
 
     public Navigation() {
         // Loads the list of all user accounts.
@@ -82,25 +94,25 @@ public class Navigation {
 
     @FXML
     void handleRegisterAction(ActionEvent event) throws IOException {
-            //Load Navigation.FXML 
-            FXMLLoader login = new FXMLLoader(getClass().getResource("../view/Register.FXML"));
-            Parent root = login.load();
-           
-            //Load Navigation.java to set current (registration) playerList into its (navigation) playerList 
-            Registration navController = login.getController();
-            navController.setPlayerList(playerList);
-            
-            //Load new scene into window
-            Scene registrationScene = new Scene(root);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(registrationScene);
-            window.show();
+        //Load Navigation.FXML 
+        FXMLLoader login = new FXMLLoader(getClass().getResource("../view/Register.FXML"));
+        Parent root = login.load();
+
+        //Load Navigation.java to set current (registration) playerList into its (navigation) playerList 
+        Registration navController = login.getController();
+        navController.setPlayerList(playerList);
+
+        //Load new scene into window
+        Scene registrationScene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(registrationScene);
+        window.show();
     }
 
     void setPlayerList(PlayerList newPlayerList) {
         this.playerList = newPlayerList;
     }
-    
+
     private boolean validateAccountInfo() {
         boolean isValid = false;
 
@@ -132,5 +144,30 @@ public class Navigation {
 
         return isValid;
 
+    }
+
+    @FXML
+    void handleAccountAction(ActionEvent event) throws IOException {
+        FXMLLoader accountLoader = new FXMLLoader(getClass().getResource("../view/Account.FXML"));
+        homePane.setCenter(accountLoader.load());
+        homePane.setMaxSize(50, 50);
+    }
+
+    @FXML
+    void handleInboxAction(ActionEvent event) throws IOException {
+        FXMLLoader accountLoader = new FXMLLoader(getClass().getResource("../view/Inbox.FXML"));
+        homePane.setCenter(accountLoader.load());
+    }
+
+    @FXML
+    void handleStoreAccountAction(ActionEvent event) throws IOException {
+        FXMLLoader accountLoader = new FXMLLoader(getClass().getResource("../view/StoreAccount.FXML"));
+        homePane.setCenter(accountLoader.load());
+    }
+
+    @FXML
+    void handleTournamentAction(ActionEvent event) throws IOException {
+        FXMLLoader accountLoader = new FXMLLoader(getClass().getResource("../view/Tournament.FXML"));
+        homePane.setCenter(accountLoader.load());
     }
 }

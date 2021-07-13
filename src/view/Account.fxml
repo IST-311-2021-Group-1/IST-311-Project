@@ -1,16 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="controller.Account">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Account">
    <children>
-      <Text layoutX="185.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account Page">
+      <GridPane layoutX="171.0" layoutY="77.0" prefHeight="179.0" prefWidth="259.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.0" minWidth="10.0" prefWidth="130.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="129.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Username:" />
+            <Label text="Password:" GridPane.rowIndex="1" />
+            <Label text="Display Name:" GridPane.rowIndex="2" />
+            <Label text="Zip Code:" GridPane.rowIndex="3" />
+            <Label text="Hobbies:" GridPane.rowIndex="4" />
+            <Text fx:id="usernameField" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Text fx:id="passwordField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Text fx:id="displayNameField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Text fx:id="zipCodeField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Text fx:id="hobbiesField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         </children>
+      </GridPane>
+      <Button fx:id="editAccountButton" layoutX="245.0" layoutY="280.0" mnemonicParsing="false" text="Edit Account Info" />
+      <Label layoutX="254.0" layoutY="34.0" text="Account Details" textAlignment="CENTER">
          <font>
-            <Font size="43.0" />
+            <Font size="14.0" />
          </font>
-      </Text>
+      </Label>
    </children>
 </AnchorPane>

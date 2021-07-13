@@ -34,11 +34,12 @@ public class Navigation {
 
     private String userName, passWord;
     private PlayerList playerList;
-    private Player user;
+    private Player player;
     private Registration registration;
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private Account account;
     @FXML
     private AnchorPane navigationPane;
     @FXML
@@ -136,7 +137,7 @@ public class Navigation {
                 for (int i = 0; i < playerList.getPlayerArr().size(); i++) {
 
                     if (playerList.getPlayerArr().get(i).getUsername().equals(userName)) {
-                        user = playerList.getPlayerArr().get(i);
+                        player = playerList.getPlayerArr().get(i);
                     }
                 }
             }
@@ -149,6 +150,9 @@ public class Navigation {
     @FXML
     void handleAccountAction(ActionEvent event) throws IOException {
         FXMLLoader accountLoader = new FXMLLoader(getClass().getResource("../view/Account.FXML"));
+        account = accountLoader.getController();
+        System.out.println("Account: " + account);
+        account.setPlayer(player);
         homePane.setCenter(accountLoader.load());
         homePane.setMaxSize(50, 50);
     }
@@ -169,5 +173,14 @@ public class Navigation {
     void handleTournamentAction(ActionEvent event) throws IOException {
         FXMLLoader accountLoader = new FXMLLoader(getClass().getResource("../view/Tournament.FXML"));
         homePane.setCenter(accountLoader.load());
+    }
+
+    //Added these methods to pass to Account screen in order to tell which player is logged in
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }

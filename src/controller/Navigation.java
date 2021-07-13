@@ -150,11 +150,11 @@ public class Navigation {
     @FXML
     void handleAccountAction(ActionEvent event) throws IOException {
         FXMLLoader accountLoader = new FXMLLoader(getClass().getResource("../view/Account.FXML"));
-        account = accountLoader.getController();
-        System.out.println("Account: " + account);
-        account.setPlayer(player);
         homePane.setCenter(accountLoader.load());
+        account = accountLoader.getController();
         homePane.setMaxSize(50, 50);
+        account.setPlayer(player);
+        account.loadPlayerData();
     }
 
     @FXML

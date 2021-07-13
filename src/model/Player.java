@@ -50,6 +50,14 @@ public class Player {
     public String getPassword() {
         return password;
     }
+    
+    public String getHiddenPassword() {
+        String pw = "";
+        for (int i = 0; i < password.length(); i++) {
+        pw = pw.concat("*");
+        }
+        return pw;
+    }
 
     public void setPassword(String password) {
         this.password = password;
@@ -71,8 +79,8 @@ public class Player {
         this.zipCode = zipCode;
     }
 
-    public ArrayList getHobbyArr() {
-        return hobbyArr;
+    public String getHobbyArr() {
+        return hobbyArr.toString();
     }
 
     public void setHobbyArr(ArrayList hobbyArr) {

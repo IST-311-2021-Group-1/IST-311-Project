@@ -29,7 +29,7 @@
             <Label text="Display Name:" GridPane.rowIndex="2" />
             <Label text="Zip Code:" GridPane.rowIndex="3" />
             <Label text="Hobbies:" GridPane.rowIndex="4" />
-            <Text fx:id="usernameField" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Text fx:id="usernameField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="0" />
             <Text fx:id="passwordField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Text fx:id="displayNameField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Text fx:id="zipCodeField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3" />

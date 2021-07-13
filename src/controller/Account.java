@@ -40,17 +40,22 @@ public class Account implements Initializable {
     private Text hobbiesField;
 
     public Account() {
-        //player = new Player();
-        //loadPlayerData();
+        usernameField = new Text();
+        usernameField = new Text();
+        usernameField = new Text();
+        usernameField = new Text();
+
     }
 
 //    Loads data for the player who is logged in
     @FXML
     public void loadPlayerData() {
         usernameField.setText(player.getUsername());
-        passwordField.setText(player.getPassword());
+        passwordField.setText(player.getHiddenPassword());
         displayNameField.setText(player.getDisplayName());
         zipCodeField.setText(player.getZipCode());
+        //Need to format string in Player
+        //hobbiesField.setText(player.getHobbyArr());
     }
 
     @Override
@@ -63,8 +68,6 @@ public class Account implements Initializable {
     }
 
     public void setPlayer(Player player) {
-        this.player = player;
-        System.out.println("Testing setPlayer: " + player);
-    }
+        this.player = player;    }
 
 }

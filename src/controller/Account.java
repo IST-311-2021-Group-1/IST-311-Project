@@ -5,29 +5,26 @@
  */
 package controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.beans.InvalidationListener;
-import javafx.beans.binding.Bindings;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import model.*;
 
-/**
- * FXML Controller class
- *
- * @author vincenttse
- */
-public class Account implements Initializable {
+
+public class Account {
 
     private Player player;
-    private Navigation loginData;
     @FXML
     private Button editAccountButton;
+    @FXML
+    private Button backButton;
     @FXML
     private Text usernameField;
     @FXML
@@ -38,6 +35,7 @@ public class Account implements Initializable {
     private Text zipCodeField;
     @FXML
     private Text hobbiesField;
+
 
     public Account() {
         usernameField = new Text();
@@ -58,16 +56,30 @@ public class Account implements Initializable {
         //hobbiesField.setText(player.getHobbyArr());
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
-
     public Player getPlayer() {
         return player;
     }
 
     public void setPlayer(Player player) {
-        this.player = player;    }
+        this.player = player;
+    }
+
+    @FXML
+    void handleEditAccountButton(ActionEvent event) throws IOException {
+        
+    }
+    
+    @FXML
+    void handleBackButton(ActionEvent event) throws IOException {
+            //Load HomeMenu.FXML
+            FXMLLoader homeMenu = new FXMLLoader(getClass().getResource("../view/Navigation.FXML"));
+            Parent root = homeMenu.load();
+
+            //Load new scene into window
+            Scene homeMenuScene = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(homeMenuScene);
+            window.show();
+    }
 
 }

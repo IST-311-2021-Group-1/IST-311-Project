@@ -175,12 +175,4 @@ public class Navigation {
         homePane.setCenter(accountLoader.load());
     }
 
-    //Added these methods to pass to Account screen in order to tell which player is logged in
-    public Player getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
 }

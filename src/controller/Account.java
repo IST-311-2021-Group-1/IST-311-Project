@@ -13,18 +13,19 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TitledPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.*;
 
-
 public class Account {
 
+    private EditAccount editAccount;
     private Player player;
+    private PlayerList playerList;
     @FXML
     private Button editAccountButton;
-    @FXML
-    private Button backButton;
     @FXML
     private Text usernameField;
     @FXML
@@ -35,6 +36,8 @@ public class Account {
     private Text zipCodeField;
     @FXML
     private Text hobbiesField;
+    @FXML
+    private TitledPane editAccountPane;
 
 
     public Account() {
@@ -66,20 +69,21 @@ public class Account {
 
     @FXML
     void handleEditAccountButton(ActionEvent event) throws IOException {
-        
-    }
-    
-    @FXML
-    void handleBackButton(ActionEvent event) throws IOException {
-            //Load HomeMenu.FXML
-            FXMLLoader homeMenu = new FXMLLoader(getClass().getResource("../view/Navigation.FXML"));
-            Parent root = homeMenu.load();
+        //Load EditAccount.FXML 
+        FXMLLoader editAccountLoader = new FXMLLoader(getClass().getResource("../view/EditAccount.FXML"));
+        Parent root = editAccountLoader.load();
 
-            //Load new scene into window
-            Scene homeMenuScene = new Scene(root);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(homeMenuScene);
-            window.show();
-    }
+        //Load new scene into window
+        Scene editAccountScene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(editAccountScene);
+        window.show();
+        
+        editAccount = editAccountLoader.getController();
+        editAccount.setPlayer(player);
+        editAccount.loadTextFields();
+
+}
+
 
 }

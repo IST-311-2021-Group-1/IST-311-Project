@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import javafx.scene.layout.AnchorPane;
 import model.*;
 
 /**
@@ -29,7 +30,7 @@ public class EditAccount {
     private Account account;
     private Player player;
     private PlayerList playerList;
-    
+
     @FXML
     private Button backButton;
     @FXML
@@ -44,20 +45,24 @@ public class EditAccount {
     private TextField zipCodeEdit;
     @FXML
     private Label editAccountLabel;
-    
+    @FXML
+    private AnchorPane editAnchorPanes;
+
+    @FXML
+    private AnchorPane editAccountInnerPane;
+
     public EditAccount() {
-        
+
     }
 
-    
     public Player getPlayer() {
         return player;
     }
-    
+
     public void setPlayer(Player player) {
         this.player = player;
     }
-    
+
     //Loads the data for the player logged in
     @FXML
     public void loadTextFields() {
@@ -70,8 +75,11 @@ public class EditAccount {
 
     @FXML
     void handleBackButton(ActionEvent event) throws IOException {
+//        FXMLLoader accountLoader = new FXMLLoader(getClass().getResource("../view/Account.FXML"));
+        AnchorPane newPane = FXMLLoader.load(getClass().getResource("../view/Account.FXML"));
+        editAnchorPanes.getChildren().setAll(newPane);
 
-        this.backButton.getScene().getWindow().hide();
+//        this.backButton.getScene().getWindow().hide();
 //        //Load Navigation.FXML
 //        FXMLLoader navigationLoader = new FXMLLoader(getClass().getResource("../view/Navigation.FXML"));
 //        Parent root = navigationLoader.load();
@@ -90,21 +98,21 @@ public class EditAccount {
 //        account.setPlayer(player);
 //        account.loadPlayerData();
     }
-    
-    @FXML 
+
+    @FXML
     void handleSaveButton(ActionEvent event) {
-        
-        if (usernameEdit.getText().isEmpty() || passwordEdit.getText().isEmpty() ||
-                displayNameEdit.getText().isEmpty() || zipCodeEdit.getText().isEmpty()) {
+
+        if (usernameEdit.getText().isEmpty() || passwordEdit.getText().isEmpty()
+                || displayNameEdit.getText().isEmpty() || zipCodeEdit.getText().isEmpty()) {
             editAccountLabel.setVisible(true);
             editAccountLabel.setText("Please fill in all fields");
 
         } else {
             editAccountLabel.setText("Saved!");
-        player.setUsername(usernameEdit.getText());
-        player.setPassword(passwordEdit.getText());
-        player.setDisplayName(displayNameEdit.getText());
-        player.setZipCode(zipCodeEdit.getText());
+            player.setUsername(usernameEdit.getText());
+            player.setPassword(passwordEdit.getText());
+            player.setDisplayName(displayNameEdit.getText());
+            player.setZipCode(zipCodeEdit.getText());
         }
         System.out.println("Info is now: " + player.getUsername());
     }

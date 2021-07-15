@@ -15,8 +15,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.scene.Node;
 import model.*;
 
 public class Account {
@@ -24,6 +26,10 @@ public class Account {
     private EditAccount editAccount;
     private Player player;
     private PlayerList playerList;
+    @FXML
+    private AnchorPane editAccountPanes;
+    @FXML
+    private AnchorPane editPane;
     @FXML
     private Button editAccountButton;
     @FXML
@@ -38,7 +44,8 @@ public class Account {
     private Text hobbiesField;
     @FXML
     private TitledPane editAccountPane;
-
+    @FXML
+    private AnchorPane accountPane;
 
     public Account() {
         usernameField = new Text();
@@ -70,20 +77,24 @@ public class Account {
     @FXML
     void handleEditAccountButton(ActionEvent event) throws IOException {
         //Load EditAccount.FXML 
-        FXMLLoader editAccountLoader = new FXMLLoader(getClass().getResource("../view/EditAccount.FXML"));
-        Parent root = editAccountLoader.load();
-
+//        FXMLLoader editAccountLoader = new FXMLLoader(getClass().getResource("../view/EditAccount.FXML"));
+//        Parent root = editAccountLoader.load();
+//        editPane = FXMLLoader(getClass().getResource("../view/EditAccount.FXML"));
+//          Parent root = FXMLLoader.load(getClass().getResource("../view/EditAccount.FXML"));
+//          editPane.set
         //Load new scene into window
-        Scene editAccountScene = new Scene(root);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(editAccountScene);
-        window.show();
-        
-        editAccount = editAccountLoader.getController();
-        editAccount.setPlayer(player);
-        editAccount.loadTextFields();
+//        Scene editAccountScene = new Scene(root);
+//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        window.set(editAccountScene);
+//        window.show();
 
-}
+//        editAccount = editAccountLoader.getController();
+//        editAccount.setPlayer(player);
+//        editAccount.loadTextFields();
 
+          AnchorPane newPane = FXMLLoader.load(getClass().getResource("../view/EditAccount.FXML"));
+          accountPane.getChildren().setAll(newPane);
+
+    }
 
 }

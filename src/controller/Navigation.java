@@ -29,6 +29,7 @@ import javafx.scene.Node;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import java.net.URL;
 
 public class Navigation {
 
@@ -126,7 +127,7 @@ public class Navigation {
 
         // ... and compare if the entered ones match any set
         if (loginInfoHash.containsKey(userName)) {
-            if (loginInfoHash.get(userName).equals(passWord)) {
+                if (loginInfoHash.get(userName).equals(passWord)) {
                 isValid = true;
 
                 // The following bit runs through the entire list of players
@@ -146,6 +147,14 @@ public class Navigation {
         return isValid;
 
     }
+    
+//    @FXML
+//    void handleEditAccountAction() throws IOException {
+//        
+//
+//        FXMLLoader newPane = new FXMLLoader(getClass().getResource("../view/EditAccount.FXML"));
+//        homePane.setCenter(newPane.load());
+//    }
 
     @FXML
     void handleAccountAction(ActionEvent event) throws IOException {

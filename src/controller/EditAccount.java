@@ -96,7 +96,6 @@ public class EditAccount {
 
         } else {
             editAccountLabel.setText("Saved!");
-            editPlayerList(usernameEdit.getText(), passwordEdit.getText(), displayNameEdit.getText(), zipCodeEdit.getText());
             player.setUsername(usernameEdit.getText());
             player.setPassword(passwordEdit.getText());
             player.setDisplayName(displayNameEdit.getText());
@@ -104,20 +103,4 @@ public class EditAccount {
         }
     }
 
-    private void editPlayerList(String usersname, String password, String displayname, String zipcode) {
-        Player currentPlayer = new Player(usersname, password, displayname, zipcode);
-        HashMap<String, String> loginInfoHash = playerList.loginInfoHash();
-
-        if (loginInfoHash.containsKey(player.getUsername())) {
-            for (int i = 0; i < playerList.getPlayerArr().size(); i++) {
-                if (playerList.getPlayerArr().get(i).getUsername().equals(player.getUsername())) {
-                    System.out.println(player);
-                    player = currentPlayer;
-
-                    playerList.getPlayerArr().set(i, currentPlayer);
-                    System.out.println(player);
-                }
-            }
-        }
-    }
 }

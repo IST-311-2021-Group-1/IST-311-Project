@@ -52,6 +52,7 @@ public class Account {
         usernameField = new Text();
         usernameField = new Text();
         usernameField = new Text();
+        player = new Player();
 
     }
 
@@ -73,27 +74,27 @@ public class Account {
     public void setPlayer(Player player) {
         this.player = player;
     }
+    
+    public PlayerList getPlayerList() {
+        return playerList;
+    }
 
+    public void setPlayerList(PlayerList playerList) {
+        this.playerList = playerList;
+    }
     @FXML
     void handleEditAccountButton(ActionEvent event) throws IOException {
         //Load EditAccount.FXML 
-//        FXMLLoader editAccountLoader = new FXMLLoader(getClass().getResource("../view/EditAccount.FXML"));
-//        Parent root = editAccountLoader.load();
-//        editPane = FXMLLoader(getClass().getResource("../view/EditAccount.FXML"));
-//          Parent root = FXMLLoader.load(getClass().getResource("../view/EditAccount.FXML"));
-//          editPane.set
-        //Load new scene into window
-//        Scene editAccountScene = new Scene(root);
-//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        window.set(editAccountScene);
-//        window.show();
+        FXMLLoader editLoader = new FXMLLoader(getClass().getResource("../view/EditAccount.FXML"));
+        AnchorPane newPane = editLoader.load();
+        accountPane.getChildren().setAll(newPane);
+        
+        //Load Navigation.java to set current (registration) playerList into its (navigation) playerList 
+        System.out.println("Current Player " + player);
+        EditAccount editController = editLoader.getController();
+        editController.setPlayer(player);
+        editController.loadTextFields();
 
-//        editAccount = editAccountLoader.getController();
-//        editAccount.setPlayer(player);
-//        editAccount.loadTextFields();
-
-          AnchorPane newPane = FXMLLoader.load(getClass().getResource("../view/EditAccount.FXML"));
-          accountPane.getChildren().setAll(newPane);
 
     }
 

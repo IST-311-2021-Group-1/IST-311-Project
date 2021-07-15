@@ -7,6 +7,7 @@ package controller;
 
 import javafx.event.ActionEvent;
 import java.io.IOException;
+import java.util.HashMap;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -75,33 +76,19 @@ public class EditAccount {
 
     @FXML
     void handleBackButton(ActionEvent event) throws IOException {
-//        FXMLLoader accountLoader = new FXMLLoader(getClass().getResource("../view/Account.FXML"));
-        AnchorPane newPane = FXMLLoader.load(getClass().getResource("../view/Account.FXML"));
+
+        FXMLLoader accountLoader = new FXMLLoader(getClass().getResource("../view/Account.FXML"));
+        AnchorPane newPane = accountLoader.load();
         editAnchorPanes.getChildren().setAll(newPane);
 
-//        this.backButton.getScene().getWindow().hide();
-//        //Load Navigation.FXML
-//        FXMLLoader navigationLoader = new FXMLLoader(getClass().getResource("../view/Navigation.FXML"));
-//        Parent root = navigationLoader.load();
-//
-//        //Load new scene into window
-//        Scene registrationScene = new Scene(root);
-//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        window.setScene(registrationScene);
-//        window.show();
-//        
-//        //Load Account.FXML 
-//        FXMLLoader accountLoader = new FXMLLoader(getClass().getResource("../view/Account.FXML"));
-//        homePane.setCenter(accountLoader.load());
-//        account = accountLoader.getController();
-//        homePane.setMaxSize(50, 50);
-//        account.setPlayer(player);
-//        account.loadPlayerData();
+        Account accountController = accountLoader.getController();
+        accountController.setPlayer(player);
+        accountController.setPlayerList(playerList);
+        accountController.loadPlayerData();
     }
 
     @FXML
     void handleSaveButton(ActionEvent event) {
-
         if (usernameEdit.getText().isEmpty() || passwordEdit.getText().isEmpty()
                 || displayNameEdit.getText().isEmpty() || zipCodeEdit.getText().isEmpty()) {
             editAccountLabel.setVisible(true);
@@ -109,11 +96,28 @@ public class EditAccount {
 
         } else {
             editAccountLabel.setText("Saved!");
+            editPlayerList(usernameEdit.getText(), passwordEdit.getText(), displayNameEdit.getText(), zipCodeEdit.getText());
             player.setUsername(usernameEdit.getText());
             player.setPassword(passwordEdit.getText());
             player.setDisplayName(displayNameEdit.getText());
             player.setZipCode(zipCodeEdit.getText());
         }
-        System.out.println("Info is now: " + player.getUsername());
+    }
+
+    private void editPlayerList(String usersname, String password, String displayname, String zipcode) {
+        Player currentPlayer = new Player(usersname, password, displayname, zipcode);
+        HashMap<String, String> loginInfoHash = playerList.loginInfoHash();
+
+        if (loginInfoHash.containsKey(player.getUsername())) {
+            for (int i = 0; i < playerList.getPlayerArr().size(); i++) {
+                if (playerList.getPlayerArr().get(i).getUsername().equals(player.getUsername())) {
+                    System.out.println(player);
+                    player = currentPlayer;
+
+                    playerList.getPlayerArr().set(i, currentPlayer);
+                    System.out.println(player);
+                }
+            }
+        }
     }
 }

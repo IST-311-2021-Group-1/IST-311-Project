@@ -36,6 +36,7 @@ public class Navigation {
     private String userName, passWord;
     private PlayerList playerList;
     private Player player;
+    private Manager manager;
     private Registration registration;
     private Stage stage;
     private Scene scene;
@@ -46,7 +47,7 @@ public class Navigation {
     @FXML
     private AnchorPane rootPane;
     @FXML
-    private BorderPane homePane;
+    private GridPane homePane;
     @FXML
     private Button loginButton;
     @FXML
@@ -85,10 +86,36 @@ public class Navigation {
 
     @FXML
     void handleLoginAction(ActionEvent event) {
-        boolean confirmLogin = validateAccountInfo();
+        boolean confirmLogin = validateAccountInfo(userNameTextField.getText(), passwordTextField.getText());
+        boolean validateRole = player instanceof Manager;
+
         if (confirmLogin) {
-            loginPane.setVisible(false);
-            homePane.setVisible(true);
+            if (validateRole) {
+                loginPane.setVisible(false);
+                homePane.setVisible(true);
+            } else {
+                loginPane.setVisible(false);
+                homePane.setVisible(true);
+                storeAccountButton.setVisible(false);
+            }
+        } else {
+            errorLabel.setText("Please try again");
+        }
+    }
+
+    void handleWindowAction(String username, String password) {
+        boolean confirmLogin = validateAccountInfo(username, password);
+        boolean validateRole = player instanceof Manager;
+
+        if (confirmLogin) {
+            if (validateRole) {
+                loginPane.setVisible(false);
+                homePane.setVisible(true);
+            } else {
+                loginPane.setVisible(false);
+                homePane.setVisible(true);
+                storeAccountButton.setVisible(false);
+            }
         } else {
             errorLabel.setText("Please try again");
         }
@@ -115,19 +142,23 @@ public class Navigation {
         this.playerList = newPlayerList;
     }
 
-    private boolean validateAccountInfo() {
+    void setPlayer(Player newPlayer) {
+        this.player = newPlayer;
+    }
+
+    boolean validateAccountInfo(String username, String password) {
         boolean isValid = false;
 
         // Grab the data the user input ...
-        userName = userNameTextField.getText();
-        passWord = passwordTextField.getText();
+        userName = username;
+        passWord = password;
 
         // Grab the list of all username/password combinations ...
         HashMap<String, String> loginInfoHash = playerList.loginInfoHash();
 
         // ... and compare if the entered ones match any set
         if (loginInfoHash.containsKey(userName)) {
-                if (loginInfoHash.get(userName).equals(passWord)) {
+            if (loginInfoHash.get(userName).equals(passWord)) {
                 isValid = true;
 
                 // The following bit runs through the entire list of players
@@ -147,41 +178,58 @@ public class Navigation {
         return isValid;
 
     }
-    
-//    @FXML
-//    void handleEditAccountAction() throws IOException {
-//        
-//
-//        FXMLLoader newPane = new FXMLLoader(getClass().getResource("../view/EditAccount.FXML"));
-//        homePane.setCenter(newPane.load());
-//    }
 
     @FXML
     void handleAccountAction(ActionEvent event) throws IOException {
         FXMLLoader accountLoader = new FXMLLoader(getClass().getResource("../view/Account.FXML"));
-        homePane.setCenter(accountLoader.load());
-        account = accountLoader.getController();
-        homePane.setMaxSize(50, 50);
-        account.setPlayer(player);
-        account.loadPlayerData();
+        Parent root = accountLoader.load();
+        Account accountController = accountLoader.getController();
+        accountController.setPlayerList(playerList);
+        accountController.setPlayer(player);
+        accountController.loadPlayerData();
+        Scene registrationScene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(registrationScene);
+        window.show();
     }
 
     @FXML
     void handleInboxAction(ActionEvent event) throws IOException {
-        FXMLLoader accountLoader = new FXMLLoader(getClass().getResource("../view/Inbox.FXML"));
-        homePane.setCenter(accountLoader.load());
+        FXMLLoader inboxLoader = new FXMLLoader(getClass().getResource("../view/Inbox.FXML"));
+        Parent root = inboxLoader.load();
+        Inbox inboxController = inboxLoader.getController();
+        inboxController.setPlayerList(playerList);
+        inboxController.setPlayer(player);
+        Scene inboxScene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inboxScene);
+        window.show();
     }
 
     @FXML
     void handleStoreAccountAction(ActionEvent event) throws IOException {
-        FXMLLoader accountLoader = new FXMLLoader(getClass().getResource("../view/StoreAccount.FXML"));
-        homePane.setCenter(accountLoader.load());
+        FXMLLoader storeAccountLoader = new FXMLLoader(getClass().getResource("../view/StoreAccount.FXML"));
+        Parent root = storeAccountLoader.load();
+        StoreAccount storeAccountController = storeAccountLoader.getController();
+        storeAccountController.setPlayerList(playerList);
+        storeAccountController.setPlayer(player);
+        Scene storeAccountScene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(storeAccountScene);
+        window.show();
     }
 
     @FXML
     void handleTournamentAction(ActionEvent event) throws IOException {
-        FXMLLoader accountLoader = new FXMLLoader(getClass().getResource("../view/Tournament.FXML"));
-        homePane.setCenter(accountLoader.load());
+        FXMLLoader tournamentLoader = new FXMLLoader(getClass().getResource("../view/Tournament.FXML"));
+        Parent root = tournamentLoader.load();
+        Tournament tournamentController = tournamentLoader.getController();
+        tournamentController.setPlayerList(playerList);
+        tournamentController.setPlayer(player);
+        Scene tournamentScene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(tournamentScene);
+        window.show();
     }
 
 }

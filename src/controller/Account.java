@@ -53,7 +53,6 @@ public class Account {
         usernameField = new Text();
         usernameField = new Text();
         player = new Player();
-
     }
 
 //    Loads data for the player who is logged in
@@ -74,7 +73,7 @@ public class Account {
     public void setPlayer(Player player) {
         this.player = player;
     }
-    
+
     public PlayerList getPlayerList() {
         return playerList;
     }
@@ -82,20 +81,38 @@ public class Account {
     public void setPlayerList(PlayerList playerList) {
         this.playerList = playerList;
     }
+
     @FXML
     void handleEditAccountButton(ActionEvent event) throws IOException {
         //Load EditAccount.FXML 
         FXMLLoader editLoader = new FXMLLoader(getClass().getResource("../view/EditAccount.FXML"));
         AnchorPane newPane = editLoader.load();
         accountPane.getChildren().setAll(newPane);
-        
+
         //Load Navigation.java to set current (registration) playerList into its (navigation) playerList 
         System.out.println("Current Player " + player);
         EditAccount editController = editLoader.getController();
         editController.setPlayer(player);
         editController.loadTextFields();
 
+    }
 
+    @FXML
+    void handleBackButton(ActionEvent event) throws IOException {
+        FXMLLoader login = new FXMLLoader(getClass().getResource("../view/Navigation.FXML"));
+        Parent root = login.load();
+
+        //Load Navigation.java to set current (registration) playerList into its (navigation) playerList 
+        Navigation navController = login.getController();
+        navController.setPlayerList(playerList);
+        navController.setPlayer(player);
+        navController.handleWindowAction(player.getUsername(), player.getPassword());
+        
+        //Load new scene into window
+        Scene registrationScene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(registrationScene);
+        window.show();
     }
 
 }

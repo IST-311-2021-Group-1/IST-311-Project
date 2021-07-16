@@ -39,13 +39,13 @@
                   <TextField fx:id="zipCodeEdit" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
-            <Button fx:id="saveButton" layoutX="338.0" layoutY="283.0" mnemonicParsing="false" onAction="#handleSaveButton" text="Save" />
+            <Button fx:id="saveButton" layoutX="254.0" layoutY="274.0" mnemonicParsing="false" onAction="#handleSaveButton" prefHeight="36.0" prefWidth="118.0" text="Save" />
             <Label alignment="CENTER" layoutX="242.0" layoutY="22.0" text="Edit Account Details" textAlignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button fx:id="backButton" layoutX="187.0" layoutY="284.0" mnemonicParsing="false" onAction="#handleBackButton" text="Back" />
+            <Button fx:id="backButton" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="36.0" prefWidth="91.0" text="Back" />
             <Label fx:id="editAccountLabel" alignment="TOP_CENTER" layoutX="229.0" layoutY="51.0" prefHeight="17.0" prefWidth="144.0" textAlignment="CENTER" textFill="#d50000" />
          </children>
       </AnchorPane>

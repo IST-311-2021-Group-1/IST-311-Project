@@ -36,11 +36,12 @@
             <Text fx:id="hobbiesField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <Button fx:id="editAccountButton" layoutX="245.0" layoutY="283.0" mnemonicParsing="false" onAction="#handleEditAccountButton" text="Edit Account Info" />
+      <Button fx:id="editAccountButton" layoutX="245.0" layoutY="283.0" mnemonicParsing="false" onAction="#handleEditAccountButton" prefHeight="36.0" prefWidth="128.0" text="Edit Account Info" />
       <Label layoutX="254.0" layoutY="34.0" text="Account Details" textAlignment="CENTER">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
+      <Button fx:id="backButton" layoutX="20.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="36.0" prefWidth="91.0" text="Back" />
    </children>
 </AnchorPane>

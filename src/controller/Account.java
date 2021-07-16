@@ -22,10 +22,12 @@ import javafx.scene.Node;
 import model.*;
 
 public class Account {
-
-    private EditAccount editAccount;
+    
+    private DataManagement dataManagement;
     private Player player;
-    private PlayerList playerList;
+    
+    // private EditAccount editAccount;
+
     @FXML
     private AnchorPane editAccountPanes;
     @FXML
@@ -48,11 +50,11 @@ public class Account {
     private AnchorPane accountPane;
 
     public Account() {
-        usernameField = new Text();
-        usernameField = new Text();
-        usernameField = new Text();
-        usernameField = new Text();
-        player = new Player();
+//        usernameField = new Text();
+//        usernameField = new Text();
+//        usernameField = new Text();
+//        usernameField = new Text();
+//        player = new Player();
     }
 
 //    Loads data for the player who is logged in
@@ -74,14 +76,6 @@ public class Account {
         this.player = player;
     }
 
-    public PlayerList getPlayerList() {
-        return playerList;
-    }
-
-    public void setPlayerList(PlayerList playerList) {
-        this.playerList = playerList;
-    }
-
     @FXML
     void handleEditAccountButton(ActionEvent event) throws IOException {
         //Load EditAccount.FXML 
@@ -89,10 +83,10 @@ public class Account {
         AnchorPane newPane = editLoader.load();
         accountPane.getChildren().setAll(newPane);
 
-        //Load Navigation.java to set current (registration) playerList into its (navigation) playerList 
         System.out.println("Current Player " + player);
         EditAccount editController = editLoader.getController();
         editController.setPlayer(player);
+        editController.setDataManagement(dataManagement);
         editController.loadTextFields();
 
     }
@@ -104,15 +98,24 @@ public class Account {
 
         //Load Navigation.java to set current (registration) playerList into its (navigation) playerList 
         Navigation navController = login.getController();
-        navController.setPlayerList(playerList);
+        navController.setDataManagement(dataManagement);
         navController.setPlayer(player);
-        navController.handleWindowAction(player.getUsername(), player.getPassword());
+        navController.setReturn();
+        //navController.handleWindowAction(player.getUsername(), player.getPassword());
         
         //Load new scene into window
         Scene registrationScene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(registrationScene);
         window.show();
+    }
+
+    public DataManagement getDataManagement() {
+        return dataManagement;
+    }
+
+    public void setDataManagement(DataManagement dataManagement) {
+        this.dataManagement = dataManagement;
     }
 
 }

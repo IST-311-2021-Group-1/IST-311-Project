@@ -1,8 +1,10 @@
 
 package model;
 
+import java.io.Serializable;
 
-public class Store {
+
+public class Store  implements Serializable {
     private String name;
     private String address;
     private String zipCode;

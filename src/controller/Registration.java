@@ -15,7 +15,9 @@ import model.Player;
 import model.PlayerList;
 
 public class Registration {
-
+    
+    private DataManagement dataManagement;
+    
     private PlayerList playerList;
     private Player newUser;
     @FXML
@@ -56,23 +58,27 @@ public class Registration {
 
  
     public Registration () {
-        playerList = new PlayerList();
+
     }
+    
+    public void loadPlayers() {
+        playerList = dataManagement.loadPlayers();
+    }
+    
     @FXML
     private void handleCancelAction(ActionEvent event) throws IOException {
-            //Load Navigation.FXML
-            FXMLLoader login = new FXMLLoader(getClass().getResource("../view/Navigation.FXML"));
-            Parent root = login.load();
-           
-            //Load Navigation.java to set current (registration) playerList into its (navigation) playerList 
-            Navigation navController = login.getController();
-            navController.setPlayerList(playerList);
-            
-            //Load new scene into window
-            Scene registrationScene = new Scene(root);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(registrationScene);
-            window.show();
+        //Load Navigation.FXML
+        FXMLLoader navigation = new FXMLLoader(getClass().getResource("../view/Navigation.FXML"));
+        Parent root = navigation.load();
+
+        //Load Navigation.java to set current (registration) playerList into its (navigation) playerList 
+        Navigation navController = navigation.getController();
+
+        //Load new scene into window
+        Scene registrationScene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(registrationScene);
+        window.show();
     }
 
     @FXML
@@ -90,7 +96,6 @@ public class Registration {
            
             //Load Navigation.java to set current (registration) playerList into its (navigation) playerList 
             Navigation navController = login.getController();
-            navController.setPlayerList(playerList);
             
             //Load new scene into window
             Scene registrationScene = new Scene(root);
@@ -116,6 +121,9 @@ public class Registration {
 
         // And add that object to the list of all players.
         playerList.getPlayerArr().add(newUser);
+        
+        // And store it in the file
+        dataManagement.savePlayers(playerList.getPlayerArr());
     }
 
     //Validates if all input fields are filled or valid
@@ -160,5 +168,13 @@ public class Registration {
         }
 
         return isValid;
+    }
+
+    public DataManagement getDataManagement() {
+        return dataManagement;
+    }
+
+    public void setDataManagement(DataManagement dataManagement) {
+        this.dataManagement = dataManagement;
     }
 }

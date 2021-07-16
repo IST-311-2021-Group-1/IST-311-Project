@@ -27,7 +27,9 @@ import model.PlayerList;
  */
 public class Tournament implements Initializable {
 
+    private DataManagement dataManagement;
     private Player player;
+    
     private PlayerList playerList;
     @FXML
     private Button backButton;
@@ -65,12 +67,21 @@ public class Tournament implements Initializable {
         Navigation navController = login.getController();
         navController.setPlayerList(playerList);
         navController.setPlayer(player);
-        navController.handleWindowAction(player.getUsername(), player.getPassword());
+        navController.setReturn();
+        // navController.handleWindowAction(player.getUsername(), player.getPassword());
 
         //Load new scene into window
         Scene navScene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(navScene);
         window.show();
+    }
+
+    public DataManagement getDataManagement() {
+        return dataManagement;
+    }
+
+    public void setDataManagement(DataManagement dataManagement) {
+        this.dataManagement = dataManagement;
     }
 }

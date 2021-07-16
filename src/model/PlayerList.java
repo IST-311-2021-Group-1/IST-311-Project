@@ -8,16 +8,18 @@ public class PlayerList {
     private ArrayList<Player> playerArr;
 
     public PlayerList() {
-        playerArr = new ArrayList<>();
-        loadArr();
+        playerArr = createDefaultArr();
     }
 
     public PlayerList(ArrayList playerArr) {
         this.playerArr = playerArr;
     }
 
-    public void loadArr() {
+    public ArrayList<Player> createDefaultArr() {
+        ArrayList<Player> newArr = new ArrayList<>();
+        
         StoreList storeList = new StoreList();
+        
         Player p1 = new Player("alexa_m", "password1234", "Alexa", "67226");
         Player p2 = new Player("tomi_a", "password1234", "Tomi", "28451");
         Player p3 = new Player("vincent_t", "password1234", "Vincent", "13143");
@@ -25,13 +27,14 @@ public class PlayerList {
         Manager m2 = new Manager("will_m", "password1234", "Will", "13143", storeList.getStoreArr().get(1));
         Manager m3 = new Manager("peggy_f", "password1234", "Peggy", "67226", storeList.getStoreArr().get(0));
 
-        playerArr.add(p1);
-        playerArr.add(p2);
-        playerArr.add(p3);
-        playerArr.add(m1);
-        playerArr.add(m2);
-        playerArr.add(m3);
-
+        newArr.add(p1);
+        newArr.add(p2);
+        newArr.add(p3);
+        newArr.add(m1);
+        newArr.add(m2);
+        newArr.add(m3);
+        
+        return newArr;
     }
 
     public void addPlayer(Player player) {

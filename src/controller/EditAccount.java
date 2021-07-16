@@ -28,9 +28,10 @@ import model.*;
  */
 public class EditAccount {
 
-    private Account account;
+    private DataManagement dataManagement;
     private Player player;
-    private PlayerList playerList;
+    
+    private Account account;
 
     @FXML
     private Button backButton;
@@ -67,9 +68,12 @@ public class EditAccount {
     //Loads the data for the player logged in
     @FXML
     public void loadTextFields() {
-        playerList = new PlayerList();
+        //playerList = new PlayerList();
         usernameEdit.setText(player.getUsername());
-        passwordEdit.setText(player.getHiddenPassword());
+        // So I am editin out the hidden password because when we save chanes, it saves
+        // your password to be a set of asterisks instead of keeping it as it was.
+        //passwordEdit.setText(player.getHiddenPassword());
+        passwordEdit.setText(player.getPassword());
         displayNameEdit.setText(player.getDisplayName());
         zipCodeEdit.setText(player.getZipCode());
     }
@@ -83,7 +87,7 @@ public class EditAccount {
 
         Account accountController = accountLoader.getController();
         accountController.setPlayer(player);
-        accountController.setPlayerList(playerList);
+        accountController.setDataManagement(dataManagement);
         accountController.loadPlayerData();
     }
 
@@ -103,20 +107,31 @@ public class EditAccount {
             player.setZipCode(zipCodeEdit.getText());
         }
     }
-        private void editPlayerList(String usersname, String password, String displayname, String zipcode) {
+    
+    private void editPlayerList(String usersname, String password, String displayname, String zipcode) {
+        PlayerList playerList = dataManagement.loadPlayers();
         Player currentPlayer = new Player(usersname, password, displayname, zipcode);
         HashMap<String, String> loginInfoHash = playerList.loginInfoHash();
 
         if (loginInfoHash.containsKey(player.getUsername())) {
             for (int i = 0; i < playerList.getPlayerArr().size(); i++) {
                 if (playerList.getPlayerArr().get(i).getUsername().equals(player.getUsername())) {
-                    System.out.println(player);
+                    //System.out.println(player);
                     player = currentPlayer;
 
                     playerList.getPlayerArr().set(i, currentPlayer);
-                    System.out.println(player);
+                    dataManagement.savePlayers(playerList.getPlayerArr());
+                    //System.out.println(player);
                 }
             }
         }
+    }
+
+    public DataManagement getDataManagement() {
+        return dataManagement;
+    }
+
+    public void setDataManagement(DataManagement dataManagement) {
+        this.dataManagement = dataManagement;
     }
 }

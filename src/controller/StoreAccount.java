@@ -34,6 +34,10 @@ public class StoreAccount implements Initializable {
     @FXML
     private Button backButton;
 
+    @FXML
+    private Button createButton;
+    
+
     /**
      * Initializes the controller class.
      */
@@ -76,6 +80,26 @@ public class StoreAccount implements Initializable {
         window.setScene(navScene);
         window.show();
     }
+    
+    @FXML
+    void handleCreateButton(ActionEvent event) throws IOException {
+        FXMLLoader login = new FXMLLoader(getClass().getResource("../view/CreateTournament.FXML"));
+        Parent root = login.load();
+
+        //Load Navigation.java to set current (registration) playerList into its (navigation) playerList 
+        CreateTournament navController = login.getController();
+        navController.setDataManagement(dataManagement);
+        navController.setPlayer(player);
+        //navController.setReturn();
+        // navController.handleWindowAction(player.getUsername(), player.getPassword());
+
+        //Load new scene into window
+        Scene navScene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(navScene);
+        window.show();
+    }
+    
 
     public DataManagement getDataManagement() {
         return dataManagement;

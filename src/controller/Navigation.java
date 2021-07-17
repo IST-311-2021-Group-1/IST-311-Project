@@ -250,7 +250,7 @@ public class Navigation {
     private void handleTournamentAction(ActionEvent event) throws IOException {
         FXMLLoader tournamentLoader = new FXMLLoader(getClass().getResource("../view/Tournament.FXML"));
         Parent root = tournamentLoader.load();
-        Tournament tournamentController = tournamentLoader.getController();
+        SearchTournament tournamentController = tournamentLoader.getController();
         tournamentController.setDataManagement(dataManagement);
         tournamentController.setPlayer(player);
         Scene tournamentScene = new Scene(root);

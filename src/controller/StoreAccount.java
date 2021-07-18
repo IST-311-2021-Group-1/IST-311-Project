@@ -20,23 +20,23 @@ import javafx.stage.Stage;
 import model.Player;
 import model.PlayerList;
 import java.io.IOException;
+
 /**
  * FXML Controller class
  *
  * @author vincenttse
  */
 public class StoreAccount implements Initializable {
-    
+
     private DataManagement dataManagement;
     private Player player;
-    
     private PlayerList playerList;
     @FXML
     private Button backButton;
-
     @FXML
     private Button createButton;
-    
+    @FXML
+    private Button editTournament;
 
     /**
      * Initializes the controller class.
@@ -80,7 +80,7 @@ public class StoreAccount implements Initializable {
         window.setScene(navScene);
         window.show();
     }
-    
+
     @FXML
     void handleCreateButton(ActionEvent event) throws IOException {
         FXMLLoader login = new FXMLLoader(getClass().getResource("../view/CreateTournament.FXML"));
@@ -99,7 +99,25 @@ public class StoreAccount implements Initializable {
         window.setScene(navScene);
         window.show();
     }
-    
+
+    @FXML
+    void handleEditButton(ActionEvent event) throws IOException {
+        FXMLLoader login = new FXMLLoader(getClass().getResource("../view/EditTournament.FXML"));
+        Parent root = login.load();
+
+        //Load Navigation.java to set current (registration) playerList into its (navigation) playerList 
+        EditTournament navController = login.getController();
+        navController.setDataManagement(dataManagement);
+        navController.setPlayer(player);
+        //navController.setReturn();
+        // navController.handleWindowAction(player.getUsername(), player.getPassword());
+
+        //Load new scene into window
+        Scene navScene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(navScene);
+        window.show();
+    }
 
     public DataManagement getDataManagement() {
         return dataManagement;

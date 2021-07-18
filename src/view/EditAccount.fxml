@@ -31,8 +31,6 @@
                   <Label text="Password:" GridPane.rowIndex="1" />
                   <Label text="Display Name:" GridPane.rowIndex="2" />
                   <Label text="Zip Code:" GridPane.rowIndex="3" />
-                  <Label text="Hobbies:" GridPane.rowIndex="4" />
-                  <Text fx:id="hobbiesField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <TextField fx:id="usernameEdit" GridPane.columnIndex="1" />
                   <TextField fx:id="passwordEdit" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="displayNameEdit" GridPane.columnIndex="1" GridPane.rowIndex="2" />

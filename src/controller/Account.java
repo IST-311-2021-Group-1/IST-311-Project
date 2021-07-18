@@ -26,8 +26,6 @@ public class Account {
     private DataManagement dataManagement;
     private Player player;
     
-    // private EditAccount editAccount;
-
     @FXML
     private AnchorPane editAccountPanes;
     @FXML
@@ -42,8 +40,6 @@ public class Account {
     private Text displayNameField;
     @FXML
     private Text zipCodeField;
-    @FXML
-    private Text hobbiesField;
     @FXML
     private TitledPane editAccountPane;
     @FXML
@@ -64,8 +60,6 @@ public class Account {
         passwordField.setText(player.getHiddenPassword());
         displayNameField.setText(player.getDisplayName());
         zipCodeField.setText(player.getZipCode());
-        //Need to format string in Player
-        //hobbiesField.setText(player.getHobbyArr());
     }
 
     public Player getPlayer() {

@@ -10,7 +10,6 @@ public class Player implements Serializable {
     private String password;
     private String displayName;
     private String zipCode;
-    private ArrayList hobbyArr;
     
     //Empty constructor
     public Player() {
@@ -18,15 +17,6 @@ public class Player implements Serializable {
     }
     
     //Constructor with all attributes
-    public Player(String username, String password, String displayName, String zipCode, ArrayList hobbyArr) {
-        this.username = username;
-        this.password = password;
-        this.displayName = displayName;
-        this.zipCode = zipCode;
-        this.hobbyArr = hobbyArr;
-    }
-    
-    //Constructor without hobbyArr
     public Player(String username, String password, String displayName, String zipCode) {
         this.username = username;
         this.password = password;
@@ -78,14 +68,6 @@ public class Player implements Serializable {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
-    }
-
-    public String getHobbyArr() {
-        return hobbyArr.toString();
-    }
-
-    public void setHobbyArr(ArrayList hobbyArr) {
-        this.hobbyArr = hobbyArr;
     }
     
     

@@ -12,12 +12,6 @@ public class Manager extends Player {
     }
 
     //Constructor with all attributes
-    public Manager(String username, String password, String displayName, String zipCode, ArrayList hobbyArr, Store store) {
-        super(username, password, displayName, zipCode, hobbyArr);
-        this.store = store;
-    }
-
-    //Constructor without hobbyArr
     public Manager(String username, String password, String displayName, String zipCode, Store store) {
         super(username, password, displayName, zipCode);
         this.store = store;

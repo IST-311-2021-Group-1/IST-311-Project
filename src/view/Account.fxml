@@ -28,12 +28,10 @@
             <Label text="Password:" GridPane.rowIndex="1" />
             <Label text="Display Name:" GridPane.rowIndex="2" />
             <Label text="Zip Code:" GridPane.rowIndex="3" />
-            <Label text="Hobbies:" GridPane.rowIndex="4" />
             <Text fx:id="usernameField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="0" />
             <Text fx:id="passwordField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Text fx:id="displayNameField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Text fx:id="zipCodeField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Text fx:id="hobbiesField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <Button fx:id="editAccountButton" layoutX="245.0" layoutY="283.0" mnemonicParsing="false" onAction="#handleEditAccountButton" prefHeight="36.0" prefWidth="128.0" text="Edit Account Info" />

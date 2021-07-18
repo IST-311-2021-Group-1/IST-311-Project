@@ -29,9 +29,9 @@ public class TournamentList {
     
     public ArrayList<Tournament> createDefaultList() {
         ArrayList<Tournament> newArr = new ArrayList<>();
-        Tournament t1 = new Tournament("Warhammer 4K 2021 Invitational", "July 17, 2021", 14, playerListArr, "5");
-        Tournament t2 = new Tournament("Warhammer 4K 2021 Finals", "July 18, 2021", 14, playerListArr, "6");
-        Tournament t3 = new Tournament("Warhammer 4K 2021 Finals", "July 18, 2021", 14, playerListArr, "6");
+        Tournament t1 = new Tournament("Warhammer 40K 2021 Invitational", "July 17, 2021", 14, playerListArr, "5");
+        Tournament t2 = new Tournament("Warhammer 40K 2021 Semi Finals", "July 16, 2021", 14, playerListArr, "6");
+        Tournament t3 = new Tournament("Warhammer 40K 2021 Finals", "July 18, 2021", 14, playerListArr, "6");
         
         newArr.add(t1);
         newArr.add(t2);

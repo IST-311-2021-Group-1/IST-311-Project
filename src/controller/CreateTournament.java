@@ -89,7 +89,7 @@ public class CreateTournament {
         String cost = costField.getText();
 
         tournament = new Tournament(tournamentName, date, maxNumPlayers, playerListArr, cost);
-        System.out.println(tournament);
+        //System.out.println(tournament);
         tournamentList.getTournamentArr().add(tournament);
 
     }

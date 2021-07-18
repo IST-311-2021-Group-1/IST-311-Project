@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author tomia
@@ -15,13 +17,15 @@ public class Tournament {
     
     private String tournamentName;
     private String date;
-    private PlayerList playerList;
+    private int maxNumPlayers;
+    private ArrayList<PlayerList> playerListArr;
     private String cost;
     
-    public Tournament(String tournamentName, String date, PlayerList playerList, String cost) {
+    public Tournament(String tournamentName, String date, int maxNumPlayers, ArrayList<PlayerList> playerListArr, String cost) {
         this.tournamentName = tournamentName;
         this.date = date;
-        this.playerList = playerList;
+        this.maxNumPlayers = maxNumPlayers;
+        this.playerListArr = playerListArr;
         this.cost = cost;
     }
 
@@ -56,15 +60,15 @@ public class Tournament {
     /**
      * @return the playerList
      */
-    public PlayerList getPlayerList() {
-        return playerList;
+    public ArrayList<PlayerList> getPlayerListArr() {
+        return playerListArr;
     }
 
     /**
      * @param playerList the playerList to set
      */
-    public void setPlayerList(PlayerList playerList) {
-        this.playerList = playerList;
+    public void setPlayerListArr(ArrayList<PlayerList> playerListArr) {
+        this.playerListArr = playerListArr;
     }
 
     /**

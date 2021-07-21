@@ -32,12 +32,13 @@ import javafx.scene.layout.Pane;
 import java.net.URL;
 
 public class Navigation {
+
     // The following 2 attributes should be passed to any other controller
     // classes being called. (with the exception of registration which
     // shouldn't get player as a player did not log in yet)
     private DataManagement dataManagement;
     private Player player;
-    
+
     private String userName, passWord;
     private PlayerList playerList;
     private Manager manager;
@@ -46,8 +47,7 @@ public class Navigation {
     private Scene scene;
     private Parent root;
     private Account account;
-    
-    
+
     @FXML
     private AnchorPane navigationPane;
     @FXML
@@ -88,11 +88,11 @@ public class Navigation {
     public Navigation() {
         // Load the DataManagement Controller
         dataManagement = new DataManagement();
-        
+
         // Loads the list of all user accounts.
         playerList = dataManagement.loadPlayers();
     }
-    
+
     public Navigation(DataManagement dataManagement, Player player) {
         this.dataManagement = dataManagement;
         this.player = player;
@@ -110,18 +110,17 @@ public class Navigation {
             errorLabel.setText("Please try again");
         }
     }
-    
+
     public void updatePlayerList() {
         playerList = dataManagement.loadPlayers();
     }
-    
+
     public void checkManager() {
         storeAccountButton.setVisible(player instanceof Manager);
     }
 
-        ///////////////////////////////////// The following should be good to be deleted... ///////////////////////////////////////
-        ///////////////////////////////////// keeping it for now in case it is needed for something ///////////////////////////////
-    
+    ///////////////////////////////////// The following should be good to be deleted... ///////////////////////////////////////
+    ///////////////////////////////////// keeping it for now in case it is needed for something ///////////////////////////////
 //    private void handleWindowAction(String username, String password) {
 //        boolean confirmLogin = validateAccountInfo(username, password);
 //        boolean validateRole = player instanceof Manager;
@@ -139,7 +138,6 @@ public class Navigation {
 //            errorLabel.setText("Please try again");
 //        }
 //    }
-    
     public void setReturn() {
         checkManager();
         loginPane.setVisible(false);
@@ -148,20 +146,42 @@ public class Navigation {
 
     @FXML
     private void handleRegisterAction(ActionEvent event) throws IOException {
-        //Load Navigation.FXML 
-        FXMLLoader register = new FXMLLoader(getClass().getResource("../view/Register.FXML"));
-        Parent root = register.load();
-
-        //Load Navigation.java to set current (registration) playerList into its (navigation) playerList 
-        Registration navController = register.getController();
-        navController.setDataManagement(dataManagement);
-        navController.loadPlayers();
-
-        //Load new scene into window
-        Scene registrationScene = new Scene(root);
+        //Load RegistrationChoice.FXML 
+        FXMLLoader registerChoice = new FXMLLoader(getClass().getResource("../view/RegistrationChoice.FXML"));
+        Parent root = registerChoice.load();
+        RegistrationChoice regController = registerChoice.getController();
+        Scene registrationChoice = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(registrationScene);
+        window.setScene(registrationChoice);
         window.show();
+        
+        
+//        FXMLLoader register = new FXMLLoader(getClass().getResource("../view/ManagerRegistration.FXML"));
+//        Parent root = register.load();
+//        ManagerRegistration navController = register.getController();
+//        navController.setDataManagement(dataManagement);
+//        navController.loadPlayers();
+//        navController.loadStores();
+//        Scene registrationScene = new Scene(root);
+//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        window.setScene(registrationScene);
+//        window.show();
+        
+        //Commented out for testing Manager Registration
+
+//        FXMLLoader register = new FXMLLoader(getClass().getResource("../view/Register.FXML"));
+//        Parent root = register.load();
+//
+//        //Load Navigation.java to set current (registration) playerList into its (navigation) playerList 
+//        Registration navController = register.getController();
+//        navController.setDataManagement(dataManagement);
+//        navController.loadPlayers();
+//
+//        //Load new scene into window
+//        Scene registrationScene = new Scene(root);
+//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        window.setScene(registrationScene);
+//        window.show();
     }
 
     public void setPlayerList(PlayerList newPlayerList) {

@@ -7,8 +7,7 @@ public class StoreList {
     private ArrayList<Store> storeArr;
 
     public StoreList() {
-        storeArr = new ArrayList<>();
-        loadArr();
+        storeArr = createDefaultArr();
 
     }
 
@@ -16,15 +15,18 @@ public class StoreList {
         this.storeArr = storeArr;
     }
 
-    public void loadArr() {
+    public ArrayList<Store> createDefaultArr() {
+        ArrayList<Store> newArr = new ArrayList<>();
+        
         Store ChessStore = new Store("Chess Store", "123 Bluebird St", "67226", 30);
         Store GameStore = new Store("Game Store", "187 Yellow Ave", "13143", 50);
         Store CardStore = new Store("Card Store", "900 Sandpiper Ln", "39507", 40);
         
-        storeArr = new ArrayList<>();
-        storeArr.add(ChessStore);
-        storeArr.add(GameStore);
-        storeArr.add(CardStore);
+        newArr.add(ChessStore);
+        newArr.add(GameStore);
+        newArr.add(CardStore);
+        
+        return newArr;
     }
 
     public void addStore(Store store) {

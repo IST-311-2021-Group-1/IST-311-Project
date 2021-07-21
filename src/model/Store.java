@@ -26,7 +26,7 @@ public class Store  implements Serializable {
 
     
     public String toString() {
-        return "Store: " + name;
+        return name;
     }
     //Getters & Setters
     public String getName() {

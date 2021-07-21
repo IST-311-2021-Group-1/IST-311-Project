@@ -46,11 +46,7 @@ public class Account {
     private AnchorPane accountPane;
 
     public Account() {
-//        usernameField = new Text();
-//        usernameField = new Text();
-//        usernameField = new Text();
-//        usernameField = new Text();
-//        player = new Player();
+
     }
 
 //    Loads data for the player who is logged in

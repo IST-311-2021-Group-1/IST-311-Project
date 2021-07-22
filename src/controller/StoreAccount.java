@@ -5,6 +5,7 @@
  */
 package controller;
 
+import model.Manager;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -20,6 +21,7 @@ import javafx.stage.Stage;
 import model.Player;
 import model.PlayerList;
 import java.io.IOException;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -37,7 +39,25 @@ public class StoreAccount implements Initializable {
     private Button createButton;
     @FXML
     private Button editTournament;
+    @FXML
+    private Text storeAddressText;
 
+    @FXML
+    private Text storeNameText;
+
+    @FXML
+    private Text storeZipCodeText;
+
+    @FXML
+    private Text storePlayerCapacityText;
+
+    public StoreAccount() {
+//        if (player instanceof Manager) {
+//            loadStore();
+//        }
+
+//        loadStore();
+    }
     /**
      * Initializes the controller class.
      */
@@ -60,6 +80,15 @@ public class StoreAccount implements Initializable {
 
     public void setPlayerList(PlayerList playerList) {
         this.playerList = playerList;
+    }
+    
+    @FXML
+    public void loadStore() {
+        Manager currentManager = ((Manager) player);
+        storeNameText.setText(currentManager.getStore().getName());
+        storeAddressText.setText(currentManager.getStore().getAddress());
+        storeZipCodeText.setText(currentManager.getStore().getZipCode());
+        storePlayerCapacityText.setText(String.valueOf(currentManager.getStore().getPlayerCapacity()));
     }
 
     @FXML

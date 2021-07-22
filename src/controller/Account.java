@@ -23,11 +23,11 @@ import javafx.scene.control.Label;
 import model.*;
 
 public class Account {
-    
+
     private DataManagement dataManagement;
     private Player player;
     private Manager manager;
-    
+
     @FXML
     private AnchorPane editAccountPanes;
     @FXML
@@ -64,7 +64,7 @@ public class Account {
         zipCodeField.setText(player.getZipCode());
         checkManager();
         if (player instanceof Manager) {
-        storeField.setText(((Manager) player).getStore().toString());
+            storeField.setText(((Manager) player).getStore().toString());
         }
     }
 
@@ -80,7 +80,7 @@ public class Account {
         storeField.setVisible(player instanceof Manager);
         storeLabel.setVisible(player instanceof Manager);
     }
-    
+
     @FXML
     void handleEditAccountButton(ActionEvent event) throws IOException {
         //Load EditAccount.FXML 
@@ -107,7 +107,7 @@ public class Account {
         navController.setPlayer(player);
         navController.setReturn();
         //navController.handleWindowAction(player.getUsername(), player.getPassword());
-        
+
         //Load new scene into window
         Scene registrationScene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

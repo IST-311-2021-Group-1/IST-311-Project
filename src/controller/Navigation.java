@@ -260,6 +260,7 @@ public class Navigation {
         StoreAccount storeAccountController = storeAccountLoader.getController();
         storeAccountController.setDataManagement(dataManagement);
         storeAccountController.setPlayer(player);
+        storeAccountController.loadStore();
         Scene storeAccountScene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(storeAccountScene);

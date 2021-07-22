@@ -30,7 +30,7 @@ public class EditAccount {
 
     private DataManagement dataManagement;
     private Player player;
-    
+
     private Account account;
 
     @FXML
@@ -107,7 +107,7 @@ public class EditAccount {
             player.setZipCode(zipCodeEdit.getText());
         }
     }
-    
+
     private void editPlayerList(String usersname, String password, String displayname, String zipcode) {
         PlayerList playerList = dataManagement.loadPlayers();
         Player currentPlayer = new Player(usersname, password, displayname, zipcode);
@@ -125,6 +125,11 @@ public class EditAccount {
                 }
             }
         }
+    }
+
+    @FXML
+    void handleEditButton(ActionEvent event) {
+
     }
 
     public DataManagement getDataManagement() {

@@ -64,7 +64,7 @@ public class Account {
         zipCodeField.setText(player.getZipCode());
         checkManager();
         if (player instanceof Manager) {
-        storeField.setText(manager.getStore().toString());
+        storeField.setText(((Manager) player).getStore().toString());
         }
     }
 

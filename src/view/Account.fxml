@@ -32,6 +32,8 @@
             <Text fx:id="passwordField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Text fx:id="displayNameField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Text fx:id="zipCodeField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="storeLabel" text="Store:" visible="false" GridPane.rowIndex="4" />
+            <Text fx:id="storeField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <Button fx:id="editAccountButton" layoutX="245.0" layoutY="283.0" mnemonicParsing="false" onAction="#handleEditAccountButton" prefHeight="36.0" prefWidth="128.0" text="Edit Account Info" />

@@ -19,12 +19,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import model.*;
 
 public class Account {
     
     private DataManagement dataManagement;
     private Player player;
+    private Manager manager;
     
     @FXML
     private AnchorPane editAccountPanes;
@@ -44,6 +46,10 @@ public class Account {
     private TitledPane editAccountPane;
     @FXML
     private AnchorPane accountPane;
+    @FXML
+    private Text storeField;
+    @FXML
+    private Label storeLabel;
 
     public Account() {
 
@@ -56,6 +62,10 @@ public class Account {
         passwordField.setText(player.getHiddenPassword());
         displayNameField.setText(player.getDisplayName());
         zipCodeField.setText(player.getZipCode());
+        checkManager();
+        if (player instanceof Manager) {
+        storeField.setText(manager.getStore().toString());
+        }
     }
 
     public Player getPlayer() {
@@ -66,6 +76,11 @@ public class Account {
         this.player = player;
     }
 
+    public void checkManager() {
+        storeField.setVisible(player instanceof Manager);
+        storeLabel.setVisible(player instanceof Manager);
+    }
+    
     @FXML
     void handleEditAccountButton(ActionEvent event) throws IOException {
         //Load EditAccount.FXML 

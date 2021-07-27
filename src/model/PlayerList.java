@@ -17,9 +17,9 @@ public class PlayerList {
 
     public ArrayList<Player> createDefaultArr() {
         ArrayList<Player> newArr = new ArrayList<>();
-        
+
         StoreList storeList = new StoreList();
-        
+
         Player p1 = new Player("alexa_m", "password1234", "Alexa", "67226");
         Player p2 = new Player("tomi_a", "password1234", "Tomi", "28451");
         Player p3 = new Player("vincent_t", "password1234", "Vincent", "13143");
@@ -33,7 +33,7 @@ public class PlayerList {
         newArr.add(m1);
         newArr.add(m2);
         newArr.add(m3);
-        
+            
         return newArr;
     }
 
@@ -50,7 +50,7 @@ public class PlayerList {
 
         return loginCredentials;
     }
-    
+
     public ArrayList<String> usernamesArr() {
         ArrayList<String> allUserNames = new ArrayList<String>();
 
@@ -60,7 +60,7 @@ public class PlayerList {
 
         return allUserNames;
     }
-    
+
     public ArrayList<String> displayNamesArr() {
         ArrayList<String> allDisplayNames = new ArrayList<String>();
 
@@ -70,7 +70,7 @@ public class PlayerList {
 
         return allDisplayNames;
     }
-
+        
     //Getters & Setters
     public ArrayList<Player> getPlayerArr() {
         return playerArr;

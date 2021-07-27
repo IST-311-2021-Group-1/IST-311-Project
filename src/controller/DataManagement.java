@@ -81,7 +81,7 @@ public class DataManagement {
 
     public StoreList loadStores() {
         // Try loading the stores from the file
-       // readStoreListFile();
+       readStoreListFile();
 
         // If the file is not found or if it is empty...
         if (listOfStores.isEmpty() || listOfStores == null) {
@@ -89,7 +89,6 @@ public class DataManagement {
             // Create a new default list of stores
             StoreList defaultStoreList = new StoreList();
             listOfStores = defaultStoreList.getStoreArr();
-            System.out.println("Store array loaded to listOfStores");
 
             // Save it to (a new) file.
             saveStores(listOfStores);
@@ -99,6 +98,17 @@ public class DataManagement {
         }
 
         return new StoreList(listOfStores);
+    }
+    
+    public StoreList loadStoreChoices() {
+        ArrayList<Store> storeList = new ArrayList();
+        storeList = loadStores().getStoreArr();
+            for (int i = 0; i < storeList.size(); i++) {
+            if (storeList.get(i).getManager() != null) {
+                storeList.remove(i);
+            }
+        }
+            return new StoreList(storeList);
     }
 
     public void readStoreListFile() {

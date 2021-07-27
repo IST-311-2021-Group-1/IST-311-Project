@@ -9,6 +9,7 @@ public class Store  implements Serializable {
     private String address;
     private String zipCode;
     private int playerCapacity;
+    private Manager manager;
     
     //Empty constructor
     public Store() {
@@ -17,11 +18,12 @@ public class Store  implements Serializable {
     
     
     //Constructor with all attributes
-    public Store(String name, String address, String zipCode, int playerCapacity) {
+    public Store(String name, String address, String zipCode, int playerCapacity, Manager manager) {
         this.name = name;
         this.address = address;
         this.zipCode = zipCode;
         this.playerCapacity = playerCapacity;
+        this.manager = manager;
     }
 
     
@@ -61,6 +63,13 @@ public class Store  implements Serializable {
         this.playerCapacity = playerCapacity;
     }
     
+    public Manager getManager() {
+        return manager;
+    }
+    
+    public void setManager(Manager manager) {
+        this.manager = manager;
+    }
     
     
 }

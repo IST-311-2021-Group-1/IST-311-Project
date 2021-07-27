@@ -26,7 +26,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.*;
 
-
 /**
  * FXML Controller class
  *
@@ -35,11 +34,11 @@ import model.*;
 public class ManagerRegistration {
 
     private DataManagement dataManagement;
-    
+
     private PlayerList playerList;
     private Manager newManager;
     private StoreList storeList;
-    
+
     @FXML
     private Button confirmButton;
 
@@ -75,29 +74,26 @@ public class ManagerRegistration {
 
     @FXML
     private Text fieldError;
-    
+
     @FXML
     private ChoiceBox storeChoice;
 
-    
-    
     public ManagerRegistration() {
-        
+
     }
-    
-    
-    
+
     public void loadPlayers() {
         playerList = dataManagement.loadPlayers();
     }
-    
+
     //Loads store data and store choices
     public void loadStores() {
-        storeList = dataManagement.loadStores();
+        storeList = dataManagement.loadStoreChoices();
         storeChoice.setItems(FXCollections.observableArrayList(storeList.getStoreArr()));
-               
+
+
     }
-   
+
     private void register() {
         // Get the text from the entry fields
         String username = userNameField.getText();
@@ -109,13 +105,18 @@ public class ManagerRegistration {
         // Make the new user object with the given data
         newManager = new Manager(username, password, displayName, zipCode, store);
 
-        // And add that object to the list of all players.
+        // Set the manager attribute for Store
+        store.setManager(newManager);
+
+        // And add the objects to the list of all players/stores
         playerList.getPlayerArr().add(newManager);
-        
-        // And store it in the file
+        storeList.getStoreArr().add(store);
+
+        // And store them in the files
         dataManagement.savePlayers(playerList.getPlayerArr());
+        dataManagement.saveStores(storeList.getStoreArr());
     }
-    
+
     //Validates if all input fields are filled or valid
     //Method is WIP, cannot get validation
     private boolean validate() {
@@ -144,7 +145,7 @@ public class ManagerRegistration {
             displayNameError.setVisible(true);
             isValid = false;
         }
-        
+
         // Run a check to see if the zipcode is 5 digits
         if (zipCode.length() != 5) {
             zipCodeError.setVisible(true);
@@ -152,30 +153,31 @@ public class ManagerRegistration {
         }
 
         // Run a check to see if the fields are empty
-        if (username.equals("") || password.equals("") || confirmPassword.equals("") || displayName.equals("") || zipCode.equals("")) {
+        if (username.equals("") || password.equals("") || confirmPassword.equals("")
+                || displayName.equals("") || zipCode.equals("") || storeChoice.getValue() == null) {
             fieldError.setVisible(true);
             isValid = false;
         }
 
         return isValid;
     }
-    
+
     @FXML
     private void handleRegisterAction(ActionEvent event) throws IOException {
         boolean validateAccount = validate();
-        
+
         if (validateAccount) {
-            
+
             //Register user into playerlist
             register();
-           
+
             //Load Navigation.FXML 
             FXMLLoader login = new FXMLLoader(getClass().getResource("../view/Navigation.FXML"));
             Parent root = login.load();
-           
+
             //Load Navigation.java to set current (registration) playerList into its (navigation) playerList 
             Navigation navController = login.getController();
-            
+
             //Load new scene into window
             Scene registrationScene = new Scene(root);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -183,7 +185,7 @@ public class ManagerRegistration {
             window.show();
         }
     }
-    
+
     @FXML
     private void handleCancelAction(ActionEvent event) throws IOException {
         //Load Navigation.FXML
@@ -199,7 +201,7 @@ public class ManagerRegistration {
         window.setScene(registrationScene);
         window.show();
     }
-        
+
     public DataManagement getDataManagement() {
         return dataManagement;
     }
@@ -207,8 +209,5 @@ public class ManagerRegistration {
     public void setDataManagement(DataManagement dataManagement) {
         this.dataManagement = dataManagement;
     }
-}
 
-//Test manager data
-//username: managerTest
-//pw: 1234
+}

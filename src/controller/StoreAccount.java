@@ -22,6 +22,8 @@ import model.Player;
 import model.PlayerList;
 import java.io.IOException;
 import javafx.scene.text.Text;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 
 /**
  * FXML Controller class
@@ -33,6 +35,14 @@ public class StoreAccount implements Initializable {
     private DataManagement dataManagement;
     private Player player;
     private PlayerList playerList;
+
+    @FXML
+    private AnchorPane storeAccountPane;
+
+    @FXML
+    private GridPane infoPane;
+    @FXML
+    private GridPane editPane;
     @FXML
     private Button backButton;
     @FXML
@@ -51,6 +61,18 @@ public class StoreAccount implements Initializable {
     @FXML
     private Text storePlayerCapacityText;
 
+    @FXML
+    private TextField editNameField;
+
+    @FXML
+    private TextField editAddressField;
+
+    @FXML
+    private TextField editZipCodeField;
+
+    @FXML
+    private TextField editPlayerCapacityField;
+
     public StoreAccount() {
 //        if (player instanceof Manager) {
 //            loadStore();
@@ -58,6 +80,7 @@ public class StoreAccount implements Initializable {
 
 //        loadStore();
     }
+
     /**
      * Initializes the controller class.
      */
@@ -81,7 +104,7 @@ public class StoreAccount implements Initializable {
     public void setPlayerList(PlayerList playerList) {
         this.playerList = playerList;
     }
-    
+
     @FXML
     public void loadStore() {
         Manager currentManager = ((Manager) player);
@@ -130,22 +153,27 @@ public class StoreAccount implements Initializable {
     }
 
     @FXML
-    void handleEditButton(ActionEvent event) throws IOException {
-        FXMLLoader login = new FXMLLoader(getClass().getResource("../view/EditTournament.FXML"));
-        Parent root = login.load();
+    void handleEditButton(ActionEvent event) {
+        infoPane.setVisible(false);
+        editPane.setVisible(true);
+    }
 
-        //Load Navigation.java to set current (registration) playerList into its (navigation) playerList 
-        EditTournament navController = login.getController();
-        navController.setDataManagement(dataManagement);
-        navController.setPlayer(player);
-        //navController.setReturn();
-        // navController.handleWindowAction(player.getUsername(), player.getPassword());
+    @FXML
+    void handleSaveAction(ActionEvent event) {
+        Manager currentManager = ((Manager) player);
+        currentManager.getStore().setName(editNameField.getText());
+        currentManager.getStore().setAddress(editAddressField.getText());
+        currentManager.getStore().setZipCode(editZipCodeField.getText());
+        currentManager.getStore().setPlayerCapacity(Integer.parseInt(editPlayerCapacityField.getText()));
+        loadStore();
+        infoPane.setVisible(true);
+        editPane.setVisible(false);
+    }
 
-        //Load new scene into window
-        Scene navScene = new Scene(root);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(navScene);
-        window.show();
+    @FXML
+    void handleCancelAction(ActionEvent event) {
+        infoPane.setVisible(true);
+        editPane.setVisible(false);
     }
 
     public DataManagement getDataManagement() {

@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -10,9 +11,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StoreAccount">
+<AnchorPane id="AnchorPane" fx:id="storeAccountPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StoreAccount">
    <children>
-      <GridPane fx:id="storeInfoGrid" layoutY="14.0" prefHeight="400.0" prefWidth="594.0">
+      <GridPane fx:id="infoPane" layoutY="14.0" prefHeight="400.0" prefWidth="594.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="10.0" prefWidth="115.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="281.0" minWidth="10.0" prefWidth="281.0" />
@@ -69,6 +70,80 @@
             </VBox>
             <Button fx:id="editButton" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="48.0" prefWidth="141.0" text="Edit Account" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
             <Button fx:id="editTournament" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="51.0" prefWidth="155.0" text="Edit Tournament" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+      <GridPane fx:id="editPane" prefHeight="414.0" prefWidth="600.0" visible="false">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="10.0" prefWidth="134.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="482.0" minWidth="10.0" prefWidth="421.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="22.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="152.0" minHeight="10.0" prefHeight="18.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="258.0" minHeight="10.0" prefHeight="258.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <TextField fx:id="editNameField">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="editAddressField">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="editZipCodeField">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="editPlayerCapacityField">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets top="45.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+                     <VBox.margin>
+                        <Insets bottom="31.0" left="100.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
+                     <VBox.margin>
+                        <Insets bottom="31.0" left="90.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Zipcode">
+                     <VBox.margin>
+                        <Insets bottom="31.0" left="90.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Player Capcity">
+                     <VBox.margin>
+                        <Insets bottom="31.0" left="55.0" />
+                     </VBox.margin>
+                  </Text>
+               </children>
+               <GridPane.margin>
+                  <Insets top="45.0" />
+               </GridPane.margin>
+            </VBox>
+            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#handleSaveAction" prefHeight="44.0" prefWidth="135.0" text="Save" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets right="35.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancelAction" prefHeight="36.0" prefWidth="110.0" style="-fx-background-color: red;" text="Cancel" textFill="WHITE" GridPane.halignment="CENTER" />
          </children>
       </GridPane>
    </children>

@@ -89,8 +89,18 @@ public class ManagerRegistration {
     //Loads store data and store choices
     public void loadStores() {
         storeList = dataManagement.loadStoreChoices();
-        storeChoice.setItems(FXCollections.observableArrayList(storeList.getStoreArr()));
 
+        for (int i = 0; i < playerList.getPlayerArr().size(); i++) {
+            for (int x = 0; x < storeList.getStoreArr().size(); x++) {
+                if (storeList.getStoreArr().get(x).getManager() != null) {
+                    if (storeList.getStoreArr().get(x).getManager().equals(playerList.getPlayerArr().get(i))) {
+                        storeList.getStoreArr().remove(x);
+                    }
+                }
+            }
+        }
+
+        storeChoice.setItems(FXCollections.observableArrayList(storeList.getStoreArr()));
 
     }
 

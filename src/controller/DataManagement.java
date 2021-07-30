@@ -60,9 +60,9 @@ public class DataManagement {
                 System.out.println("Player List Loaded!");
             }
         } catch (IOException ex) {
-            ex.printStackTrace();
+           ex.printStackTrace();
         } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
+           ex.printStackTrace();
         }
     }
 

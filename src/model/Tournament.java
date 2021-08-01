@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 //Tourney is the name of the Tournament object to avoid confusion with Tournament in controller package
 public class Tournament {
-    
+ 
     private String tournamentName;
     private String date;
     private int maxNumPlayers;
@@ -55,6 +55,20 @@ public class Tournament {
      */
     public void setDate(String date) {
         this.date = date;
+    }
+    
+     /**
+     * @return the maxNumPlayers
+     */
+    public int getMaxNumPlayers() {
+        return maxNumPlayers;
+    }
+
+    /**
+     * @param maxNumPlayers the maxNumPlayers to set
+     */
+    public void setMaxNumPlayers(int maxNumPlayers) {
+        this.maxNumPlayers = maxNumPlayers;
     }
 
     /**

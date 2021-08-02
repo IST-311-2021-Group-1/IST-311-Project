@@ -17,13 +17,16 @@ public class DataManagement {
 
     private String playerListFileName = "TournamentAppPlayers.ser";
     private String storeListFileName = "TournamentAppStores.ser";
+    private String tournamentListFileName = "TournamentAppStores.ser";
     private ArrayList<Player> listOfPlayers;
     private ArrayList<Store> listOfStores;
+    private ArrayList<Tournament> listOfTournaments;
 
     // Empty Constructor
     public DataManagement() {
         listOfPlayers = new ArrayList();
         listOfStores = new ArrayList();
+        listOfTournaments = new ArrayList();
     }
 
     public PlayerList loadPlayers() {
@@ -134,6 +137,55 @@ public class DataManagement {
         ObjectOutputStream out = null;
         try {
             fos = new FileOutputStream(storeListFileName);
+            out = new ObjectOutputStream(fos);
+            out.writeObject(listToSave);
+            out.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public TournamentList loadTournaments() {
+        readTournamentListFile();
+        if (listOfTournaments.isEmpty() || listOfTournaments == null) {
+
+            // Create a new default list of players
+            TournamentList defaultTournamentList = new TournamentList();
+            listOfTournaments = defaultTournamentList.getTournamentArr();
+
+            // Save it to (a new) file.
+            saveTournaments(listOfTournaments);
+
+            // And then load it from the newly crated file.
+            readTournamentListFile();
+        }
+
+        return new TournamentList(listOfTournaments);
+    }
+    
+    public void readTournamentListFile() {
+        FileInputStream fis = null;
+        ObjectInputStream in = null;
+        try {
+            fis = new FileInputStream(tournamentListFileName);
+            in = new ObjectInputStream(fis);
+            listOfTournaments = (ArrayList) in.readObject();
+            in.close();
+            if (!listOfTournaments.isEmpty()) {
+                System.out.println("Tournament List Loaded!");
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void saveTournaments(ArrayList<Tournament> listToSave) {
+        FileOutputStream fos = null;
+        ObjectOutputStream out = null;
+        try {
+            fos = new FileOutputStream(tournamentListFileName);
             out = new ObjectOutputStream(fos);
             out.writeObject(listToSave);
             out.close();

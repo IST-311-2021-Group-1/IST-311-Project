@@ -3,20 +3,48 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegistrationChoice">
    <children>
-      <Button fx:id="playerButton" layoutX="123.0" layoutY="167.0" mnemonicParsing="false" onAction="#handlePlayerButtonAction" text="Player Account" />
-      <Button fx:id="managerButton" layoutX="364.0" layoutY="167.0" mnemonicParsing="false" onAction="#handleManagerButtonAction" text="Manager Account" />
-      <Label layoutX="164.0" layoutY="84.0" text="Which type of account do you want to create?">
+      <Button fx:id="playerButton" layoutX="107.0" layoutY="156.0" mnemonicParsing="false" onAction="#handlePlayerButtonAction" prefHeight="48.0" prefWidth="131.0" text="Player Account">
          <font>
-            <Font size="14.0" />
+            <Font name="Avenir Next Bold" size="14.0" />
+         </font>
+         <effect>
+            <DropShadow offsetX="2.0" offsetY="1.0" radius="9.24" spread="0.07" width="17.96">
+               <color>
+                  <Color red="0.3176470696926117" green="0.250980406999588" blue="0.250980406999588" />
+               </color>
+            </DropShadow>
+         </effect></Button>
+      <Button fx:id="managerButton" layoutX="362.0" layoutY="156.0" mnemonicParsing="false" onAction="#handleManagerButtonAction" prefHeight="48.0" prefWidth="142.0" text="Manager Account">
+         <font>
+            <Font name="Avenir Next Bold" size="14.0" />
+         </font>
+         <effect>
+            <DropShadow offsetX="2.0" offsetY="1.0" radius="9.24" spread="0.07" width="17.96">
+               <color>
+                  <Color red="0.3176470696926117" green="0.250980406999588" blue="0.250980406999588" />
+               </color>
+            </DropShadow>
+         </effect></Button>
+      <Label layoutX="107.0" layoutY="82.0" text="Which type of account do you want to create?">
+         <font>
+            <Font name="Avenir Next Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="107.0" layoutY="220.0" prefHeight="74.0" prefWidth="131.0" text="For players to search and register for tournaments" textAlignment="CENTER" wrapText="true" />
+      <Label layoutX="107.0" layoutY="220.0" prefHeight="74.0" prefWidth="131.0" text="For players to search and register for tournaments" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Avenir Book" size="12.0" />
+         </font></Label>
       <Separator layoutX="294.0" layoutY="141.0" orientation="VERTICAL" prefHeight="200.0" />
-      <Label layoutX="356.0" layoutY="220.0" prefHeight="74.0" prefWidth="131.0" text="For store managers to create and manage tournaments" textAlignment="CENTER" wrapText="true" />
+      <Label layoutX="362.0" layoutY="220.0" prefHeight="74.0" prefWidth="142.0" text="For store managers to create and manage tournaments" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Avenir Book" size="12.0" />
+         </font></Label>
    </children>
 </AnchorPane>

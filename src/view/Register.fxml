@@ -52,21 +52,33 @@
                <GridPane.margin>
                   <Insets right="6.0" top="-15.0" />
                </GridPane.margin>
+               <font>
+                  <Font name="Avenir Book" size="12.0" />
+               </font>
             </Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin>
+               <font>
+                  <Font size="12.0" />
+               </font>
             </Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin>
+               <font>
+                  <Font size="12.0" />
+               </font>
             </Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Display Name" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin>
+               <font>
+                  <Font size="12.0" />
+               </font>
             </Text>
             <TextField id="zipCodeInput" fx:id="zipCodeField" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <GridPane.margin>
@@ -76,11 +88,17 @@
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin>
+               <font>
+                  <Font size="12.0" />
+               </font>
             </Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Create an Account" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                <GridPane.margin>
                   <Insets right="15.0" top="5.0" />
                </GridPane.margin>
+               <font>
+                  <Font name="Avenir Next Bold" size="17.0" />
+               </font>
             </Text>
             <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancelAction" style="-fx-background-color: red;" text="Cancel" textFill="#fff9f9" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                <GridPane.margin>

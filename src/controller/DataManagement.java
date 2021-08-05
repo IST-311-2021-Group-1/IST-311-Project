@@ -17,16 +17,20 @@ public class DataManagement {
 
     private String playerListFileName = "TournamentAppPlayers.ser";
     private String storeListFileName = "TournamentAppStores.ser";
-    private String tournamentListFileName = "TournamentAppStores.ser";
+    private String tournamentListFileName = "TournamentAppTournaments.ser";
+    private String messageListFileName = "TournamentAppMessages.ser";
+    
     private ArrayList<Player> listOfPlayers;
     private ArrayList<Store> listOfStores;
-    private ArrayList<Tournament> listOfTournaments;
+    private ArrayList<model.Tournament> listOfTournaments;
+    private ArrayList<Message> listOfMessages;
 
     // Empty Constructor
     public DataManagement() {
         listOfPlayers = new ArrayList();
         listOfStores = new ArrayList();
         listOfTournaments = new ArrayList();
+        listOfMessages = new ArrayList();
     }
 
     public PlayerList loadPlayers() {
@@ -149,7 +153,7 @@ public class DataManagement {
         readTournamentListFile();
         if (listOfTournaments.isEmpty() || listOfTournaments == null) {
 
-            // Create a new default list of players
+            // Create a new default list of Tournaments
             TournamentList defaultTournamentList = new TournamentList();
             listOfTournaments = defaultTournamentList.getTournamentArr();
 
@@ -181,11 +185,64 @@ public class DataManagement {
         }
     }
     
-    public void saveTournaments(ArrayList<Tournament> listToSave) {
+    public void saveTournaments(ArrayList<model.Tournament> listToSave) {
         FileOutputStream fos = null;
         ObjectOutputStream out = null;
         try {
             fos = new FileOutputStream(tournamentListFileName);
+            out = new ObjectOutputStream(fos);
+            out.writeObject(listToSave);
+            out.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public MessageList loadMessages() {
+
+        // Try loading the messages from the file
+        readMessageListFile();
+
+        // If the file is not found or if it is empty...
+        if (listOfMessages.isEmpty() || listOfMessages == null) {
+
+            // Create a new default list of messages
+            MessageList defaultMessageList = new MessageList();
+            listOfMessages = defaultMessageList.getMessageArr();
+
+            // Save it to (a new) file.
+            saveMessages(listOfMessages);
+
+            // And then load it from the newly crated file.
+            readMessageListFile();
+        }
+
+        return new MessageList(listOfMessages);
+    }
+
+    public void readMessageListFile() {
+        FileInputStream fis = null;
+        ObjectInputStream in = null;
+        try {
+            fis = new FileInputStream(messageListFileName);
+            in = new ObjectInputStream(fis);
+            listOfMessages = (ArrayList) in.readObject();
+            in.close();
+            if (!listOfMessages.isEmpty()) {
+                System.out.println("Message List Loaded!");
+            }
+        } catch (IOException ex) {
+           ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+           ex.printStackTrace();
+        }
+    }
+
+    public void saveMessages(ArrayList<Message> listToSave) {
+        FileOutputStream fos = null;
+        ObjectOutputStream out = null;
+        try {
+            fos = new FileOutputStream(messageListFileName);
             out = new ObjectOutputStream(fos);
             out.writeObject(listToSave);
             out.close();

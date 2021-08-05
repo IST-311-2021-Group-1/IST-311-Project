@@ -58,4 +58,20 @@ public class TournamentList {
     public void setTournamentArr(ArrayList<Tournament> tournamentArr) {
         this.tournamentArr = tournamentArr;
     }
+
+    public Tournament getTournament() {
+        return tournament;
+    }
+
+    public void setTournament(Tournament tournament) {
+        this.tournament = tournament;
+    }
+
+    public ArrayList<PlayerList> getPlayerListArr() {
+        return playerListArr;
+    }
+
+    public void setPlayerListArr(ArrayList<PlayerList> playerListArr) {
+        this.playerListArr = playerListArr;
+    }
 }

@@ -247,6 +247,7 @@ public class Navigation {
         Inbox inboxController = inboxLoader.getController();
         inboxController.setDataManagement(dataManagement);
         inboxController.setPlayer(player);
+        inboxController.setInboxPane();
         Scene inboxScene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inboxScene);

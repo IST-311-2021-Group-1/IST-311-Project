@@ -42,7 +42,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <ListView fx:id="listPanel" layoutX="133.0" layoutY="33.0" prefHeight="283.0" prefWidth="393.0" />
+      <ListView fx:id="listPanel" layoutX="129.0" layoutY="33.0" prefHeight="283.0" prefWidth="397.0" />
       <ScrollBar fx:id="scrollSlider" layoutX="526.0" layoutY="33.0" orientation="VERTICAL" prefHeight="283.0" prefWidth="15.0" />
    </children>
 </AnchorPane>

@@ -13,9 +13,9 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SearchTournament">
    <children>
-      <Text layoutX="243.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tournaments">
+      <Text layoutX="236.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tournaments">
          <font>
-            <Font name="Avenir Next Bold" size="18.0" />
+            <Font name="Avenir Next Bold" size="24.0" />
          </font>
       </Text>
       <Button fx:id="backButton" layoutX="14.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="51.0" prefWidth="99.0" style="-fx-background-color: transparent;">
@@ -26,8 +26,8 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <ListView fx:id="listPanel" layoutX="121.0" layoutY="65.0" prefHeight="244.0" prefWidth="384.0" />
-      <ScrollBar fx:id="scrollBar" layoutX="505.0" layoutY="65.0" orientation="VERTICAL" prefHeight="244.0" prefWidth="22.0" />
+      <ListView fx:id="listPanel" layoutX="121.0" layoutY="72.0" prefHeight="237.0" prefWidth="384.0" />
+      <ScrollBar fx:id="scrollBar" layoutX="505.0" layoutY="72.0" orientation="VERTICAL" prefHeight="237.0" prefWidth="21.0" />
       <Button fx:id="loadButton" layoutX="175.0" layoutY="327.0" mnemonicParsing="false" onAction="#handleLoadButton" prefHeight="41.0" prefWidth="115.0" text="Load">
          <font>
             <Font name="Avenir Next Bold" size="14.0" />

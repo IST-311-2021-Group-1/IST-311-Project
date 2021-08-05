@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,6 +13,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -113,17 +115,54 @@
       
       <Pane id="inboxPane" fx:id="inboxPane" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Text layoutX="229.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inbox">
+            <Text layoutX="273.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inbox">
                <font>
-                  <Font size="43.0" />
+                  <Font name="Avenir Next Bold" size="24.0" />
                </font>
             </Text>
-            <Button fx:id="backButton" layoutX="22.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="36.0" prefWidth="91.0" text="Back" />
+            <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="48.0" prefWidth="100.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="36.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/back-icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <ListView fx:id="listPanel" layoutX="124.0" layoutY="68.0" prefHeight="244.0" prefWidth="365.0" />
             <ScrollBar fx:id="scrollBar" layoutX="489.0" layoutY="68.0" orientation="VERTICAL" prefHeight="244.0" prefWidth="22.0" />
-            <Button fx:id="refreshButton" layoutX="291.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleRefreshButton" text="Refresh" />
-            <Button fx:id="readButton" layoutX="136.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleReadButton" text="Read Message" />
-            <Button id="writeButton" fx:id="writeButton" layoutX="405.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleWriteButton" text="Write Message" />
+            <Button fx:id="refreshButton" layoutX="258.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleRefreshButton" prefHeight="41.0" prefWidth="125.0" text="Refresh">
+               <font>
+                  <Font name="Avenir Next Bold" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow offsetX="2.0" offsetY="1.0" radius="9.24" spread="0.07" width="17.96">
+                     <color>
+                        <Color red="0.3176470696926117" green="0.250980406999588" blue="0.250980406999588" />
+                     </color>
+                  </DropShadow>
+               </effect></Button>
+            <Button fx:id="readButton" layoutX="124.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleReadButton" prefHeight="41.0" prefWidth="125.0" text="Read Message">
+               <font>
+                  <Font name="Avenir Next Bold" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow height="19.48" offsetX="2.0" offsetY="1.0" radius="8.86" spread="0.07" width="17.96">
+                     <color>
+                        <Color red="0.3176470696926117" green="0.250980406999588" blue="0.250980406999588" />
+                     </color>
+                  </DropShadow>
+               </effect></Button>
+            <Button id="writeButton" fx:id="writeButton" layoutX="389.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleWriteButton" prefHeight="41.0" prefWidth="125.0" text="Write Message">
+               <effect>
+                  <DropShadow offsetX="2.0" offsetY="1.0" radius="9.24" spread="0.07" width="17.96">
+                     <color>
+                        <Color red="0.3176470696926117" green="0.250980406999588" blue="0.250980406999588" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <font>
+                  <Font name="Avenir Next Bold" size="14.0" />
+               </font></Button>
          </children>
       </Pane>
       

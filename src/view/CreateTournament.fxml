@@ -62,9 +62,9 @@
             <TextField fx:id="costField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Label layoutX="211.0" layoutY="66.0" text="Create Tournament Details">
+      <Label layoutX="153.0" layoutY="44.0" text="Create Tournament Details">
          <font>
-            <Font name="Avenir Next Bold" size="14.0" />
+            <Font name="Avenir Next Bold" size="23.0" />
          </font></Label>
       <Button layoutX="226.0" layoutY="275.0" mnemonicParsing="false" onAction="#handleCreateButton" prefHeight="41.0" prefWidth="117.0" text="Create">
          <font>

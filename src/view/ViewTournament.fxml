@@ -63,9 +63,9 @@
             </GridPane>
          </children>
       </AnchorPane>
-      <Text layoutX="215.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tournament Details">
+      <Text layoutX="196.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tournament Details">
          <font>
-            <Font name="Avenir Next Bold" size="18.0" />
+            <Font name="Avenir Next Bold" size="24.0" />
          </font>
       </Text>
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="112.0" style="-fx-background-color: transparent;">

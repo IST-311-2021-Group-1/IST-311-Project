@@ -60,9 +60,9 @@
                <effect>
                   <DropShadow height="19.48" offsetX="2.0" offsetY="1.0" radius="8.86" spread="0.07" width="17.96" />
                </effect></Button>
-            <Label alignment="CENTER" layoutX="212.0" layoutY="26.0" text="Edit Account Details" textAlignment="CENTER">
+            <Label alignment="CENTER" layoutX="196.0" layoutY="25.0" text="Edit Account Details" textAlignment="CENTER">
                <font>
-                  <Font name="Avenir Next Bold" size="18.0" />
+                  <Font name="Avenir Next Bold" size="24.0" />
                </font>
             </Label>
             <Button fx:id="backButton" layoutX="8.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="53.0" prefWidth="118.0" style="-fx-background-color: transparent;">

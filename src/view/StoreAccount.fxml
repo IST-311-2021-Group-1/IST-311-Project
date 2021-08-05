@@ -44,7 +44,7 @@
             </Button>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Store Account" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                <font>
-                  <Font name="Avenir Next Bold" size="18.0" />
+                  <Font name="Avenir Next Bold" size="24.0" />
                </font>
                <GridPane.margin>
                   <Insets right="65.0" />

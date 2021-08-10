@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 import model.Player;
 import model.PlayerList;
 import javafx.scene.control.ListView;
+import model.Tournament;
 import model.TournamentList;
 
 /**
@@ -35,8 +36,10 @@ public class SearchTournament implements Initializable {
 
     private DataManagement dataManagement;
     private Player player;
+    private Tournament tournament;
     private TournamentList tournamentList;
     private ArrayList<String> tournamentData;
+    private String tournamentName;
     
     private PlayerList playerList;
     @FXML
@@ -62,23 +65,18 @@ public class SearchTournament implements Initializable {
     public SearchTournament(){
         tournamentList = new TournamentList();
         tournamentData = new ArrayList();
-       // loadTournaments();
         
     }
     
     private void loadTournaments(){
         
-        //ObservableList<String> data;
-        //ListView<TournamentList> viewList = new ListView<>(TournamentList);
-        
-        
-        //ObservableList<String> data;
-        //FXCollections.observableArrayList(tournamentList.getTournamentArr());
         ArrayList<String> data = new ArrayList<>();
         for (int i = 0; i < tournamentList.getTournamentArr().size(); i++) {
             data.add(tournamentList.getTournamentArr().get(i).getTournamentName());
          }
+
        listPanel.setItems(FXCollections.observableArrayList(data));
+
     }
     
     @FXML
@@ -92,6 +90,14 @@ public class SearchTournament implements Initializable {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+    
+    public void setTournamentName(String name) {
+        this.tournamentName = name;
+    }
+    
+    public String getTournamentName() {
+        return tournamentName;
     }
 
     public PlayerList getPlayerList() {
@@ -126,18 +132,26 @@ public class SearchTournament implements Initializable {
         FXMLLoader login = new FXMLLoader(getClass().getResource("../view/ViewTournament.FXML"));
         Parent root = login.load();
         
-        //Load Navigation.java to set current (registration) playerList into its (navigation) playerList 
-        ViewTournament navController = login.getController();
-        //navController.setPlayerList(playerList);
-        //navController.setPlayer(player);
-       // navController.setReturn();
-        // navController.handleWindowAction(player.getUsername(), player.getPassword());
+        //need to pass tournament info for tournament that is clicked in list
+        tournamentName = listPanel.getSelectionModel().getSelectedItem();
+        for (int i=0; i < tournamentList.getTournamentArr().size(); i++) {
+            if (tournamentList.getTournamentArr().get(i).getTournamentName().equals(tournamentName)) {
+                tournament = tournamentList.getTournamentArr().get(i);
+            }
+        }
+        System.out.println("Tournament: " + tournament);
+        
+        ViewTournament viewController = login.getController();
+        viewController.setTournament(tournament);
+        viewController.setDataManagement(dataManagement);
+        viewController.loadTournamentDetails(); 
 
         //Load new scene into window
         Scene navScene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(navScene);
         window.show();
+        
     }
 
     public DataManagement getDataManagement() {

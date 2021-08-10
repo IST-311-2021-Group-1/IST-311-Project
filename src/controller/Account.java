@@ -106,7 +106,6 @@ public class Account {
         navController.setDataManagement(dataManagement);
         navController.setPlayer(player);
         navController.setReturn();
-        //navController.handleWindowAction(player.getUsername(), player.getPassword());
 
         //Load new scene into window
         Scene registrationScene = new Scene(root);

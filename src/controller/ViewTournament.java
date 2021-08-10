@@ -5,10 +5,17 @@
  */
 package controller;
 
+import java.io.IOException;
+import javafx.event.ActionEvent;
 import model.Tournament;
-import model.TournamentList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import model.Player;
 /**
  *
  * @author tomia
@@ -16,8 +23,9 @@ import javafx.scene.text.Text;
 public class ViewTournament 
 {
     private Tournament tournament;
-    private TournamentList tournamentList;
     private DataManagement dataManagement;
+    private Player player;
+    
     @FXML
     private Text tournamentNameField;
 
@@ -30,22 +38,45 @@ public class ViewTournament
     @FXML
     private Text costField;
     
+    
     public ViewTournament()
     {
-        
     }
     
+    
     //Loading details for individual tournament
+    @FXML
     public void loadTournamentDetails() {
+        System.out.println("Tournament: " + tournament.getTournamentName());
         tournamentNameField.setText(tournament.getTournamentName());
         dateField.setText(tournament.getDate());
         numPlayerField.setText(String.valueOf(tournament.getMaxNumPlayers()));
-        costField.setText(tournament.getCost());
+        costField.setText("$" + tournament.getCost());
     }
     
-    public void setTournamentList(TournamentList tournamentList)
+    //if Manager clicks this back button, it takes away Store Account
+    @FXML
+    public void handleBackButton(ActionEvent event) throws IOException {
+        FXMLLoader tournamentLoader = new FXMLLoader(getClass().getResource("../view/Tournament.FXML"));
+        Parent root = tournamentLoader.load();
+
+        //Load Navigation.java to set current (registration) playerList into its (navigation) playerList 
+        SearchTournament tournController = tournamentLoader.getController();
+        tournController.setDataManagement(dataManagement);
+        tournController.setPlayer(player);
+
+        //Load new scene into window
+        Scene tournamentScene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(tournamentScene);
+        window.show();
+        
+
+    }
+    
+    public void setTournament(Tournament tournament)
     {
-        //this.tournamentList = tournamentList;
+        this.tournament = tournament;
     }
     
     public DataManagement getDataManagement() {

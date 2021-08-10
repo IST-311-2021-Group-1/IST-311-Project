@@ -22,7 +22,7 @@ public class DataManagement {
     
     private ArrayList<Player> listOfPlayers;
     private ArrayList<Store> listOfStores;
-    private ArrayList<model.Tournament> listOfTournaments;
+    private ArrayList<Tournament> listOfTournaments;
     private ArrayList<Message> listOfMessages;
 
     // Empty Constructor

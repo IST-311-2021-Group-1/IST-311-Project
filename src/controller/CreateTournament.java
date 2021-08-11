@@ -85,11 +85,9 @@ public class CreateTournament {
         String tournamentName = tourneyNameField.getText();
         String date = dateField.getText();
         int maxNumPlayers = Integer.parseInt(playerListField.getText());
-        //PlayerList playerList = null;
         String cost = costField.getText();
 
         tournament = new Tournament(tournamentName, date, maxNumPlayers, playerListArr, cost);
-        //System.out.println(tournament);
         tournamentList.getTournamentArr().add(tournament);
 
     }
@@ -128,7 +126,6 @@ public class CreateTournament {
         navController.setDataManagement(dataManagement);
         navController.setPlayer(player);
         navController.setReturn();
-        //navController.handleWindowAction(player.getUsername(), player.getPassword());
 
         //Load new scene into window
         Scene registrationScene = new Scene(root);
@@ -144,7 +141,6 @@ public class CreateTournament {
 
         if (validateInfo) {
             create();
-            //createText.setVisible(true);, this is commented because there is an issue that it displays when all fields aren't filled too
             System.out.println("Tournament Created!");
         } else {
             createText.setVisible(false);
@@ -170,83 +166,3 @@ public class CreateTournament {
     }
 
 }
-
-
-/*
-public class CreateTournament implements Initializable {
-    
-    
-    
-    @FXML
-    private TextField tourneyNameField;
-
-    @FXML
-    private TextField dateField;
-    
-    @FXML
-    private TextField numPlayerField;
-    
-    @FXML
-    private TextField costField;
-    
-    @FXML
-    private Button backButton;
-    
-    @FXML
-    private Button createButton;
-    
-    
-/*
-    /**
-     * Initializes the controller class.
-     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        //TODO
-    }   
-    
-     public String getTournamentName() {
-        return tournamentName;
-    }
-
-    public void setTournamentName(String tournamentName) {
-        this.tournamentName = tournamentName;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public int getNumOfPlayers() {
-        return numOfPlayers;
-    }
-
-    public void setNumOfPlayers(int numOfPlayers) {
-        this.numOfPlayers = numOfPlayers;
-    }
-
-    public PlayerList getPlayerList() {
-        return playerList;
-    }
-
-    public void setPlayerList(PlayerList playerList) {
-        this.playerList = playerList;
-    }
-
-    public double getCost() {
-        return cost;
-    }
-
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
-    
-    private void create()
-    {
-        
-    }
- */

@@ -135,34 +135,6 @@ public class Navigation {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(registrationChoice);
         window.show();
-        
-        
-//        FXMLLoader register = new FXMLLoader(getClass().getResource("../view/ManagerRegistration.FXML"));
-//        Parent root = register.load();
-//        ManagerRegistration navController = register.getController();
-//        navController.setDataManagement(dataManagement);
-//        navController.loadPlayers();
-//        navController.loadStores();
-//        Scene registrationScene = new Scene(root);
-//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        window.setScene(registrationScene);
-//        window.show();
-        
-        //Commented out for testing Manager Registration
-
-//        FXMLLoader register = new FXMLLoader(getClass().getResource("../view/Register.FXML"));
-//        Parent root = register.load();
-//
-//        //Load Navigation.java to set current (registration) playerList into its (navigation) playerList 
-//        Registration navController = register.getController();
-//        navController.setDataManagement(dataManagement);
-//        navController.loadPlayers();
-//
-//        //Load new scene into window
-//        Scene registrationScene = new Scene(root);
-//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        window.setScene(registrationScene);
-//        window.show();
     }
 
     public void setPlayerList(PlayerList newPlayerList) {

@@ -111,8 +111,6 @@ public class EditAccount {
 
             if (player instanceof Manager) {
                 editManagerList(usernameEdit.getText(), passwordEdit.getText(), displayNameEdit.getText(), zipCodeEdit.getText(), ((Manager)player).getStore());
-//                ((Manager) player).setStore((Store) storeChoice.getValue());
-//                ((Store)storeChoice.getValue()).setManager((Manager)player);
 
             } else {
                 editPlayerList(usernameEdit.getText(), passwordEdit.getText(), displayNameEdit.getText(), zipCodeEdit.getText());
@@ -129,12 +127,10 @@ public class EditAccount {
         if (loginInfoHash.containsKey(player.getUsername())) {
             for (int i = 0; i < playerList.getPlayerArr().size(); i++) {
                 if (playerList.getPlayerArr().get(i).getUsername().equals(player.getUsername())) {
-                    //System.out.println(player);
                     player = currentPlayer;
 
                     playerList.getPlayerArr().set(i, currentPlayer);
                     dataManagement.savePlayers(playerList.getPlayerArr());
-                    //System.out.println(player);
                 }
             }
         }
@@ -148,7 +144,6 @@ public class EditAccount {
         if (loginInfoHash.containsKey(player.getUsername())) {
             for (int i = 0; i < playerList.getPlayerArr().size(); i++) {
                 if (playerList.getPlayerArr().get(i).getUsername().equals(player.getUsername())) {
-                    //System.out.println(player);
                     player = currentManager;
 
                     playerList.getPlayerArr().set(i, currentManager);

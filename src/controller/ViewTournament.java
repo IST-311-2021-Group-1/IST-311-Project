@@ -47,7 +47,6 @@ public class ViewTournament
     //Loading details for individual tournament
     @FXML
     public void loadTournamentDetails() {
-        System.out.println("Tournament: " + tournament.getTournamentName());
         tournamentNameField.setText(tournament.getTournamentName());
         dateField.setText(tournament.getDate());
         numPlayerField.setText(String.valueOf(tournament.getMaxNumPlayers()));

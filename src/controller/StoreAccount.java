@@ -74,19 +74,13 @@ public class StoreAccount implements Initializable {
     private TextField editPlayerCapacityField;
 
     public StoreAccount() {
-//        if (player instanceof Manager) {
-//            loadStore();
-//        }
 
-//        loadStore();
     }
 
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODOW
+
     }
 
     public Player getPlayer() {
@@ -124,7 +118,6 @@ public class StoreAccount implements Initializable {
         navController.setPlayerList(playerList);
         navController.setPlayer(player);
         navController.setReturn();
-        // navController.handleWindowAction(player.getUsername(), player.getPassword());
 
         //Load new scene into window
         Scene navScene = new Scene(root);
@@ -142,8 +135,6 @@ public class StoreAccount implements Initializable {
         CreateTournament navController = login.getController();
         navController.setDataManagement(dataManagement);
         navController.setPlayer(player);
-        //navController.setReturn();
-        // navController.handleWindowAction(player.getUsername(), player.getPassword());
 
         //Load new scene into window
         Scene navScene = new Scene(root);

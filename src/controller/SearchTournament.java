@@ -138,7 +138,6 @@ public class SearchTournament implements Initializable {
                 tournament = tournamentList.getTournamentArr().get(i);
             }
         }
-        System.out.println("Tournament: " + tournament);
         
         ViewTournament viewController = login.getController();
         viewController.setTournament(tournament);

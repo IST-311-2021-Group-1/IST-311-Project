@@ -117,8 +117,8 @@ public class SearchTournament implements Initializable {
         Navigation navController = login.getController();
         navController.setPlayerList(playerList);
         navController.setPlayer(player);
+        System.out.println("Player: " + player);
         navController.setReturn();
-        // navController.handleWindowAction(player.getUsername(), player.getPassword());
 
         //Load new scene into window
         Scene navScene = new Scene(root);
@@ -132,7 +132,6 @@ public class SearchTournament implements Initializable {
         FXMLLoader login = new FXMLLoader(getClass().getResource("../view/ViewTournament.FXML"));
         Parent root = login.load();
         
-        //need to pass tournament info for tournament that is clicked in list
         tournamentName = listPanel.getSelectionModel().getSelectedItem();
         for (int i=0; i < tournamentList.getTournamentArr().size(); i++) {
             if (tournamentList.getTournamentArr().get(i).getTournamentName().equals(tournamentName)) {
@@ -144,6 +143,7 @@ public class SearchTournament implements Initializable {
         ViewTournament viewController = login.getController();
         viewController.setTournament(tournament);
         viewController.setDataManagement(dataManagement);
+        viewController.setPlayer(player);
         viewController.loadTournamentDetails(); 
 
         //Load new scene into window

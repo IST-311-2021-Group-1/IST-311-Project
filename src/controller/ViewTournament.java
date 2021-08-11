@@ -54,7 +54,6 @@ public class ViewTournament
         costField.setText("$" + tournament.getCost());
     }
     
-    //if Manager clicks this back button, it takes away Store Account
     @FXML
     public void handleBackButton(ActionEvent event) throws IOException {
         FXMLLoader tournamentLoader = new FXMLLoader(getClass().getResource("../view/Tournament.FXML"));
@@ -64,6 +63,7 @@ public class ViewTournament
         SearchTournament tournController = tournamentLoader.getController();
         tournController.setDataManagement(dataManagement);
         tournController.setPlayer(player);
+        
 
         //Load new scene into window
         Scene tournamentScene = new Scene(root);
@@ -85,5 +85,13 @@ public class ViewTournament
 
     public void setDataManagement(DataManagement dataManagement) {
         this.dataManagement = dataManagement;
+    }
+    
+    public Player getPlayer() {
+        return player;
+    }
+    
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }

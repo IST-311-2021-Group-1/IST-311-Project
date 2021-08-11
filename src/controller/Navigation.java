@@ -119,25 +119,6 @@ public class Navigation {
         storeAccountButton.setVisible(player instanceof Manager);
     }
 
-    ///////////////////////////////////// The following should be good to be deleted... ///////////////////////////////////////
-    ///////////////////////////////////// keeping it for now in case it is needed for something ///////////////////////////////
-//    private void handleWindowAction(String username, String password) {
-//        boolean confirmLogin = validateAccountInfo(username, password);
-//        boolean validateRole = player instanceof Manager;
-//
-//        if (confirmLogin) {
-//            if (validateRole) {
-//                loginPane.setVisible(false);
-//                homePane.setVisible(true);
-//            } else {
-//                loginPane.setVisible(false);
-//                homePane.setVisible(true);
-//                storeAccountButton.setVisible(false);
-//            }
-//        } else {
-//            errorLabel.setText("Please try again");
-//        }
-//    }
     public void setReturn() {
         checkManager();
         loginPane.setVisible(false);

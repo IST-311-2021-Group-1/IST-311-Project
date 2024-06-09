@@ -1,4 +1,4 @@
-# Tournament App
+# Warhammer Tournament App
 
 Authored by Tomi Akindele, Alexa McInvaille, Yaroslav Naumenko, Vincent Tse
 

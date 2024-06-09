@@ -1,4 +1,4 @@
-# Warhammer Tournament App
+# Age of Sigmar Tournament App
 
 Authored by Tomi Akindele, Alexa McInvaille, Yaroslav Naumenko, Vincent Tse
 
